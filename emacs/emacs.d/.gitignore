@@ -1,0 +1,11 @@
+ac-comphist.dat
+games/*
+elpa/*
+url/*
+ac-dict/*
+auto-same-list/*
+ido.last
+*.elc
+.python-environments/*
+tramp
+eshell/*
