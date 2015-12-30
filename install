@@ -1,0 +1,95 @@
+#! /usr/bin/env bash
+
+# tool
+red=31
+green=32
+yellow=33
+blue=34
+
+function colored-echo {
+    color=$1
+    shift
+    echo -e "\033[${color}m$@\033[m"
+}
+
+function get-unique-name {
+    file=$1
+    if [ -e $file ]; then
+	num=0
+	while [ -e "${file}-${num}" ]; do
+	    num=`expr ${num} + 1`
+	done
+	file="${file}-${num}"
+    fi
+    echo $file
+}
+
+# main
+
+function install-dotfiles {
+    echo "install $1 setting files."
+    
+    for src in ${1}/* ; do
+	base=`basename $src`
+	#-L : シンボリックリンクの存在
+	if [ -e "${HOME}/.${base}" -o -L "${HOME}/.${base}" ]; then
+	    colored-echo $yellow "${HOME}/.${base} is already exist!"
+	    mkdir -p "${HOME}/settingfiles.org"
+	    tmp_name=`get-unique-name "${HOME}/settingfiles.org/${base}"`
+	    mv "${HOME}/.${base}" $tmp_name
+	    if [ $? = 0 ]; then
+		echo "    moved to ${tmp_name}"
+	    else
+		colored-echo $red "failed to move ${HOME}/.${base}"
+		exit 1
+	    fi
+	fi
+	ln -s "`pwd`/${src}" "${HOME}/.${base}"
+	if [ $? = 0 ]; then
+	    colored-echo $green "symbolic link ~/.${base} is created."
+	else
+	    colored-echo $red "failed to create link ~/.${base}"
+	    exit 1
+	fi
+    done
+}
+
+
+cd `dirname $0`
+
+case ${1} in
+    
+    bash|-bash|--bash)
+	install-dotfiles "bash"
+	;;
+    zsh|-zsh|--zsh)
+	install-dotfiles "zsh"
+	;;
+    emacs|-emacs|--emacs)
+	install-dotfiles "emacs"
+	;;
+    all|-all|--all)
+	install-dotfiles "bash"
+	install-dotfiles "emacs"
+	;;
+    *)
+	colored-echo $red "[ERROR] Please select option"
+	cat <<EOF
+option
+    bash -bash --bash : install bash dotfiles such as .bashrc .bash_profile ...
+
+    zsh -zsh --zsh : install zsh dotfiles such as .zshrc ...
+
+    emacs -emacs --emacs : install emacs dotfiles 
+
+    all -all --all : install all settings mentioned above
+
+EOF
+	exit 1
+	;;
+esac
+
+
+
+
+
