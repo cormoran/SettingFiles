@@ -1,0 +1,33 @@
+ # tool
+readonly RED=31
+readonly GREEN=32
+readonly YELLOW=33
+readonly BLUE=34
+
+function colored-echo {
+    color=$1
+    shift
+    echo -e "\033[${color}m$@\033[m"
+}
+
+#Common Setting Files
+
+if [ -d "${HOME}/.bash.d" ];then
+    for f in "${HOME}"/.bash.d/*.sh;do
+	source "$f" && colored-echo $GREEN "loaded : $f"
+    done
+else
+    colored-echo $YELLOW "not found directory : .bash.d"
+fi
+
+#Local Setting Files
+
+if [ -e "${HOME}/.bash_local" ];then
+    source "${HOME}/.bash_local" && colored-echo $GREEN "loaded : $f"
+else
+    colored-echo $YELLOW "not found : .bash_local"
+fi
+
+export EDITOR=emacs
+
+colored-echo $GREEN 'loaded : .bashrc'
