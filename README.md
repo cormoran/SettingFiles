@@ -5,8 +5,10 @@ my setting files for bash,emacs,etc
     Mac OS X Apple Terminal
     Emacs24 on Mac
 
+#Download
+    git submodule update --init --recursive https://github.com/cormoran/SettingFiles.git
+
 #Install
-    chmod +x install
     ./install all
 
 $HOME 直下シンボリックリンクが作られる。

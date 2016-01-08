@@ -29,7 +29,7 @@ else
 fi
 
 #Local Setting Files
-MY_COMMON_SETTING_FILE="${HOME}/.bash_local"
+MY_COMMON_SETTING_FILE="${HOME}/.zsh_local"
 
 if [ -e $MY_COMMON_SETTING_FILE ];then
     source $MY_COMMON_SETTING_FILE && colored-echo $GREEN "loaded : $f"
