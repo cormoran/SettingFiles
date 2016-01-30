@@ -5,6 +5,9 @@ fi
 
 # -- customize -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
+# ctrl + D でのExit抑制
+setopt IGNOREEOF
+
  # tool
 readonly RED=31
 readonly GREEN=32
