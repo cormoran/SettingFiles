@@ -8,7 +8,7 @@
 			    (html-helper-mode   . (browse-url-of-buffer))
 			    (octave-mode        . (run-octave))
 			    ("\\.c\\'"          . "clang  -std=c11 %f -o %n.out -Wall")
-			    ("\\.comp.cpp\\'"   . "clang++ -std=c++14 %f -o %n.out -Wall -DDEBUG -D_GLIBCXX_DEBUG -fsanitize=address")
+			    ("\\.comp.cpp\\'"   . "clang++ -std=c++14 %f -o %n.out -Wall")
 			    ("\\.[Cc]+[Pp]*\\'" . "clang++ -std=c++14 %f -o %n.out -Wall")
 			    ("\\.java\\'"       . "javac %f")
 			    ("\\.php\\'"        . "php -l %f")

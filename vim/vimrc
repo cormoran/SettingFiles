@@ -1,0 +1,22 @@
+if &compatible
+	set nocompatible
+endif
+set runtimepath ^=~/.vim/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.vim/dein'))
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#end()
+
+filetype plugin indent on
+
+syntax on
+set modeline
+
+set autoindent
+set smartindent
+
+set number
+set cursorline
+set cursorcolumn
+set showmatch
+

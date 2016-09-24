@@ -1,3 +1,7 @@
+;; migemo
+;; 日本語をいい感じに検索できる
+;; brew install cmigemo
+
 (when
     (and (executable-find "cmigemo")
 	 (require 'migemo nil t))

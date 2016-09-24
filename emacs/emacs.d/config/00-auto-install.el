@@ -1,6 +1,7 @@
 ;;; 00-auto-install.el --- install required packages ---
 ;;; Code:
 
+
 ;;自動バイトコンパイル
 (unless (require 'auto-async-byte-compile nil t)
   (package-refresh-contents)
@@ -14,7 +15,7 @@
   '(
     sequential-command
 
-    auto-complete
+;;    auto-complete
 
     flycheck
 
@@ -22,9 +23,9 @@
 
     flycheck-pos-tip
 
-    auto-complete-clang-async
+;;    auto-complete-clang-async
 
-    auto-complete-c-headers
+;;    auto-complete-c-headers
     
     eldoc-extension
 
@@ -51,6 +52,12 @@
     cmake-mode
 
     fuzzy
+
+    company
+
+    irony
+
+    company
     
     )
   )

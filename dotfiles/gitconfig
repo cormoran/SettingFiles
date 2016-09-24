@@ -1,0 +1,26 @@
+[user]
+	name = cormoran
+	email = cormoran707@gmail.com
+	
+[core]
+	editor = emacs
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[color]
+	ui = true
+	
+[alias]
+	st = status
+	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+	
+[credential]
+	helper = osxkeychain
+	
+[filter "lfs"]
+	smudge = git-lfs smudge %f
+	required = true
+	clean = git-lfs clean %f
+
+[ghq]
+	root = ~/Program/src
+	

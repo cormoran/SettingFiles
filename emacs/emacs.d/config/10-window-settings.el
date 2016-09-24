@@ -6,7 +6,7 @@
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
   (setq frame-title-format (format "%%f - Emacs@%s" (system-name)))
-  (load-theme 'misterioso)
+;  (load-theme 'misterioso)
   (set-frame-parameter nil 'alpha 95)
   )
 

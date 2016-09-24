@@ -1,15 +1,15 @@
-;;; 20-flycheck.el
-;;; Code:
+(add-hook 'c-mode-common-hook 'flycheck-mode)
 
-(require 'flycheck)
+;; ;;; 20-flycheck.el
+;; ;;; Code:
+
+;; (require 'flycheck)
 
 
 (require 'flycheck-pos-tip)
-;ポップアップ表示する
-(eval-after-load 'flycheck
-  '(custom-set-variables
-    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
-  )
+;;ポップアップ表示する
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
 
 ;;
 ;; C & C++
@@ -33,12 +33,13 @@
 ;; C++
 ;;
 
-(defun my-flycheck-cpp-init ()
-  (flycheck-select-checker 'c/c++-clang)
-  (setq flycheck-clang-language-standard "c++1y")
-  (add-to-list 'flycheck-clang-include-path "~/Programing/program_comp/library" )
-  (flycheck-mode t)
-  )
+ (defun my-flycheck-cpp-init ()
+   ;;(flycheck-select-checker 'c/c++-clang)
+   ;;(setq flycheck-clang-language-standard "c++1y")
+   ;;(add-to-list 'flycheck-clang-include-path "~/Programing/program_comp/library" )
+   (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
+   (flycheck-mode t)
+   )
 
 (add-hook 'c++-mode-hook 'my-flycheck-cpp-init)
 
@@ -83,6 +84,13 @@
 ;;
 
 (add-hook 'ruby-mode-hook 'flycheck-mode)
+
+
+;;
+;; rust
+;;
+
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (provide '20-flycheck.el)
 ;;; flycheck.el ends here

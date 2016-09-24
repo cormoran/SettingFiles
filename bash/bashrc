@@ -30,4 +30,10 @@ fi
 
 export EDITOR=emacs
 
+nvm-init
+
 colored-echo $GREEN 'loaded : .bashrc'
+
+export PATH="$PATH:"/Applications/microchip/xc16/v1.26/bin""
+
+export PATH="$PATH:/Applications/microchip/xc8/v1.37/bin"

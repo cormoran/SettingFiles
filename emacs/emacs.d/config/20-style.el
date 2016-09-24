@@ -1,4 +1,3 @@
-
 ;;
 ;; C & C++
 ;;
@@ -27,3 +26,10 @@
   )
 
 (add-hook 'python-mode-hook 'my-python-style-init)
+
+;;
+;; Javascript
+;;
+
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))

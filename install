@@ -6,90 +6,83 @@ green=32
 yellow=33
 blue=34
 
-function colored-echo {
-    color=$1
+ColorEcho() {
+    local color=$1
     shift
     echo -e "\033[${color}m$@\033[m"
 }
 
-function get-unique-name {
-    file=$1
-    if [ -e $file ]; then
-	num=0
-	while [ -e "${file}-${num}" ]; do
-	    num=`expr ${num} + 1`
-	done
-	file="${file}-${num}"
-    fi
-    echo $file
-}
-
-# main
-
-function install-dotfiles {
-    echo "install $1 setting files."
-    
-    for src in ${1}/* ; do
-	base=`basename $src`
-	#-L : シンボリックリンクの存在
-	if [ -e "${HOME}/.${base}" -o -L "${HOME}/.${base}" ]; then
-	    colored-echo $yellow "${HOME}/.${base} is already exist!"
-	    mkdir -p "${HOME}/settingfiles.org"
-	    tmp_name=`get-unique-name "${HOME}/settingfiles.org/${base}"`
-	    mv "${HOME}/.${base}" $tmp_name
-	    if [ $? = 0 ]; then
-		echo "    moved to ${tmp_name}"
-	    else
-		colored-echo $red "failed to move ${HOME}/.${base}"
-		exit 1
-	    fi
-	fi
-	ln -s "`pwd`/${src}" "${HOME}/.${base}"
-	if [ $? = 0 ]; then
-	    colored-echo $green "symbolic link ~/.${base} is created."
-	else
-	    colored-echo $red "failed to create link ~/.${base}"
-	    exit 1
-	fi
-    done
-}
-
 
 cd `dirname $0`
+CURDIR=`pwd`
 
-case ${1} in
-    
-    bash|-bash|--bash)
-	install-dotfiles "bash"
-	;;
-    zsh|-zsh|--zsh)
-	install-dotfiles "zsh"
-	;;
-    emacs|-emacs|--emacs)
-	install-dotfiles "emacs"
-	;;
-    all|-all|--all)
-	install-dotfiles "bash"
-	install-dotfiles "emacs"
-	;;
-    *)
-	colored-echo $red "[ERROR] Please select option"
-	cat <<EOF
-option
-    bash -bash --bash : install bash dotfiles such as .bashrc .bash_profile ...
+Install() {
+    case ${1} in
+	all)
+	    Install bash zsh tmux emacs vim dotfiles
+	    return 0
+	    ;;
 
-    zsh -zsh --zsh : install zsh dotfiles such as .zshrc ...
+	default)
+	    Install zsh tmux emacs dotfiles
+	    return 0
+	    ;;
+	
+	bash)
+	    ColorEcho $yellow "Not Impremented yet!"
+	    
+	    ;;	
+	zsh)
+	    ColorEcho $green "<--- installing zsh settings --->"
+	    
+	    git submodule update --init --recursive $CURDIR/zsh
+	    ln -i -s $CURDIR/zsh/.zshrc ~/.zshrc
+	    touch ~/.zsh_local
+	    
+	    ;;      
+	tmux)
+	    ColorEcho $green "<--- installing tmux settings --->"
+	    
+	    git submodule update --init --recursive $CURDIR/tmux
+	    ln -i -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
+	    mkdir -p ~/.tmux/plugins/
+	    ln -i -s $CURDIR/tmux/tpm/ ~/.tmux/plugins/
+	    
+	    ;;
+	emacs)
+	    ColorEcho $green "<--- installing emacs settings --->"
 
-    emacs -emacs --emacs : install emacs dotfiles 
+	    git submodule update --init --recursive $CURDIR/emacs
+	    ln -i -s $CURDIR/emacs/emacs ~/.emacs
+	    ln -i -s $CURDIR/emacs/emacs.d/ ~/.emacs.d
+	    
+	    ;;	
+	vim)
+	    ColorEcho $green "<--- installing vim settings --->"
 
-    all -all --all : install all settings mentioned above
+	    ln -i -s $CURDIR/vim/vimrc ~/.vimrc
+	    ln -i -s $CURDIR/vim/vim/ ~/.vim
+	    
+	    ;;
 
-EOF
-	exit 1
-	;;
-esac
+	dotfiles)
+	    ColorEcho $green "<--- installing many dotfiles --->"
+	    for f in $CURDIR/dotfiles/* ; do
+		echo $f
+		ln -i -s  $f ~/.`basename $f`
+	    done	    
+	    ;;
+	*)
+	    return 0
+	    ;;
+    esac
+    shift
+    Install $@
+}
 
+ColorEcho $green "vvvvvv Install Start vvvvvv"
 
+Install $@
 
-
+ColorEcho $green "^^^^^^ Install End   ^^^^^^"
 

@@ -1,9 +1,10 @@
 ;;; 10-settings.el --- common setings ---
 ;;; Code:
 
-
-
 (setq default-buffer-file-coding-system 'utf-8)
+
+;;バックスペース
+(global-set-key "\C-h" 'delete-backward-char)
 
 ;;
 ;; 見た目
@@ -23,7 +24,7 @@
 ;;カーソル位置
 (column-number-mode t)
 (line-number-mode t)
-;;改行文字
+;;改行文字表示
 (setq eol-mnemonic-dos "(CRLF)")
 (setq eol-mnemonic-unix "(LF)")
 (setq eol-mnemonic-mac "(CR)")
@@ -40,7 +41,7 @@
 ;;括弧 画面まで出るとき全体ハイライト
 (setq show-paren-style 'mixed)
 ;;選択範囲
-;;(global transient-mark-mode t) 
+(transient-mark-mode t)
 
 
 ;;
@@ -51,11 +52,11 @@
 (setq c-hungry-delete-key t)
 ;;yesをy、noをnに
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; #!に実行権をつける
+;; シェバン(#!)に実行権をつける
 (add-hook 'after-save-hook
 	  'executable-make-buffer-file-executable-if-script-p)
 ;;バッファ切り替え強化
-(iswitchb-mode t)
+;;(iswitchb-mode t)
 
 (require 'smartparens)
 (require 'smartparens-config)
@@ -82,13 +83,22 @@
 (sequential-command-setup-keys)
 
 ;;window移動をshift+Arrowに
-(windmove-default-keybindings)
+;;(windmove-default-keybindings 'ESC) ;; なんか効かない
 (setq windmove-wrap-around t)
-;;バックスペース
-(global-set-key "\C-h" 'delete-backward-char)
-
+(global-set-key (kbd "ESC <up>") 'windmove-up)
+(global-set-key (kbd "ESC <down>") 'windmove-down)
+(global-set-key (kbd "ESC <right>") 'windmove-right)
+(global-set-key (kbd "ESC <left>") 'windmove-left)
 
 (which-function-mode 1)
 
-(provide '10-settings)
+;;; タブをスペース4字
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+
+;; ~ バックアップファイル作成先を~/.emacs.backupに
+(add-to-list 'backup-directory-alist
+             (cons (expand-file-name "~/") (expand-file-name "~/.emacs.backup/")))
+
+;;(provide '10-settings)
 ;;; 10-settings.el ends here

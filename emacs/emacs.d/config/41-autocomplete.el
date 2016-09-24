@@ -31,7 +31,7 @@
   (message "Common Autocompelete Setting")
   )
 
-(my-ac-common-setup)
+;(my-ac-common-setup)
 ;; (add-hook 'auto-complete-mode-hook 'my-ac-common-setup)
 ;;これするとcommonモードの後に実行されてしまう!
 ;;ac-config-defaultはしない!
@@ -45,7 +45,7 @@
 (defun my-ac-emacs-lisp-setup ()
     (setq ac-sources (append '(ac-source-features ac-source-functions ac-source-yasnippet ac-source-variables ac-source-symbols) ac-sources)))
 
-(add-hook 'emacs-lisp-mode-hook 'my-ac-emacs-lisp-setup)
+;(add-hook 'emacs-lisp-mode-hook 'my-ac-emacs-lisp-setup)
 
 
 ;;
@@ -53,15 +53,15 @@
 ;;
 
 (defvar my/use-ac-clang nil)
-(add-to-list 'load-path "~/.emacs.d/emacs-clang-complete-async/")
-(when (and (file-executable-p "~/.emacs.d/emacs-clang-complete-async/clang-complete")
-	   (require 'auto-complete-clang-async nil t))
-  (require 'auto-complete-clang-async)
-  (setq ac-clang-complete-executable "~/.emacs.d/emacs-clang-complete-async/clang-complete")
-  (setq my/use-ac-clang t)
-  )
+;(add-to-list 'load-path "~/.emacs.d/emacs-clang-complete-async/")
+;(when (and (file-executable-p "~/.emacs.d/emacs-clang-complete-async/clang-complete")
+;	   (require 'auto-complete-clang-async nil t))
+;  (require 'auto-complete-clang-async)
+;  (setq ac-clang-complete-executable "~/.emacs.d/emacs-clang-complete-async/clang-complete")
+;  (setq my/use-ac-clang t)
+;  )
 
-(require 'auto-complete-c-headers)
+;(require 'auto-complete-c-headers)
 
 
 ;;
@@ -78,7 +78,7 @@
   (message "C Autocompelete Setting")
   )
 
-(add-hook 'c-mode-hook 'my-ac-c-setup)	
+;(add-hook 'c-mode-hook 'my-ac-c-setup)	
 
 ;;
 ;; C++
@@ -87,27 +87,39 @@
 (defun my-ac-cpp-setup ()
   (when my/use-ac-clang
     (setq ac-sources '(ac-source-clang-async ac-source-c-headers))
-    (add-to-list 'ac-clang-cflags "-I~/Programing/program_comp/library")
+    (setq ac-clang-set-flags nil)
     ;;(add-to-list 'ac-clang-cflags "-I/usr/local/include/c++/5.1.0")
-    (add-to-list 'ac-clang-cflags "-I/usr/include/c++/4.2.1")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/x86_64-apple-darwin15.0.0")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/backward")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/include")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include-fixed")
     (add-to-list 'ac-clang-cflags "-I/usr/include")
-    (add-to-list 'ac-clang-cflags "-I/usr/local/include")
-    (add-to-list 'ac-clang-cflags "-std=c++1y")
+    (add-to-list 'ac-clang-cflags "-I/usr/local/include")  
+    (add-to-list 'ac-clang-cflags "-std=c++14")
     (ac-clang-launch-completion-process)
     )
   ;;autocomplete-c-header
   (setq achead:include-directories nil)
+  (add-to-list 'achead:include-directories ".")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/x86_64-apple-darwin15.0.0")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/include/c++/5.3.0/backward")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/include")
+  (add-to-list 'achead:include-directories "/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include-fixed")
   (add-to-list 'achead:include-directories "/usr/include")
-  (add-to-list 'achead:include-directories "/usr/local/include")
-  (add-to-list 'achead:include-directories "/usr/include/c++/4.2.1")
-  (add-to-list 'achead:include-directories "~/Programing/program_comp/library")
-  (add-to-list 'achead:include-directories "./")
+  (add-to-list 'achead:include-directories "/usr/local/include")  
+;;  (add-to-list 'achead:include-directories "/usr/include/c++/4.2.1")
+;;  (add-to-list 'achead:include-directories "~/Programing/program_comp/library")
+
   (setq ac-sources (append ac-sources '(ac-source-c-headers)))
   
   (message "C++ Autocompelete Setting")
   )
 
-(add-hook 'c++-mode-hook 'my-ac-cpp-setup)
+;(add-hook 'c++-mode-hook 'my-ac-cpp-setup)
 
 
 ;;
@@ -122,7 +134,7 @@
   (message "STM32F3 C Autocompelete Setting")
   )
 
-(add-hook 'stm32f3-c-mode 'my-ac-stm32f3-c-setup)
+;(add-hook 'stm32f3-c-mode 'my-ac-stm32f3-c-setup)
 
 
 ;;
@@ -136,12 +148,12 @@
   (message "Avr C Autocompelete Setting")
   )
 
-(add-hook 'avr-c-mode 'my-ac-avr-c-setup)
+;(add-hook 'avr-c-mode 'my-ac-avr-c-setup)
 
 ;;
 ;; 有効化
 ;;
 
-(global-auto-complete-mode t)
+;(global-auto-complete-mode t)
 
 ;;; autocomplete.el ends here

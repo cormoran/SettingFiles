@@ -1,6 +1,12 @@
 [submodule "emacs/emacs.d/emacs-clang-complete-async"]
 	path = emacs/emacs.d/emacs-clang-complete-async
 	url = https://github.com/8bit-jzjjy/emacs-clang-complete-async
-[submodule "zsh/zprezto"]
-	path = zsh/zprezto
+[submodule "tmux/tpm"]
+	path = tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "zsh/.prezto"]
+	path = zsh/.prezto
+	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "zsh/.zprezto"]
+	path = zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git

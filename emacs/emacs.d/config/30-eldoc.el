@@ -1,18 +1,18 @@
-;;; 20-eldoc.el --- install required packages ---
-;;; Code:
+;; ;;; 20-eldoc.el --- install required packages ---
+;; ;;; Code:
 
-(require 'eldoc)
+;; (require 'eldoc)
 
-;;
-;; Common
-;;
+;; ;;
+;; ;; Common
+;; ;;
 
-(setq eldoc-idle-delay 0.5)
+(setq eldoc-idle-delay 0.2)
 (setq eldoc-echo-area-use-multiline-p t)
 
-;;
-;; emacs lisp
-;;
+;; ;;
+;; ;; emacs lisp
+;; ;;
 
 (require 'eldoc-extension)
 
@@ -22,29 +22,29 @@
 
 
 
-;;
-;; C & C++
-;;
+;; ;;
+;; ;; C & C++
+;; ;;
 
-(require 'c-eldoc)
-(setq c-eldoc-buffer-regenerate-time 60)
-(concatenate 'c-eldoc-includes "/usr/local/include")
-(concatenate 'c-eldoc-includes "/usr/local/include/c++/5.1.0")
-(concatenate 'c-eldoc-includes "~/Programing/program_comp/library")
+;; ;;(require 'c-eldoc)
+;; ;;(setq c-eldoc-buffer-regenerate-time 60)
+;; ;;(concatenate 'c-eldoc-includes "/usr/local/include")
+;; ;;(concatenate 'c-eldoc-includes "/usr/local/include/c++/5.1.0")
+;; ;;(concatenate 'c-eldoc-includes "~/Programing/program_comp/library")
 
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
+;; ;;(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+;; ;;(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
 
 
-;;
-;; go
-;;
+;; ;;
+;; ;; go
+;; ;;
 
 (require 'go-eldoc)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 
 
-(provide '20-eldoc)
-;;; 20-eldoc.el ends here
+;; (provide '20-eldoc)
+;; ;;; 20-eldoc.el ends here
 
