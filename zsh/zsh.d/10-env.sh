@@ -21,17 +21,18 @@ export VISUAL='emacs'
 #              brew install gcc-5
 #
 
+
 alias clang++-3.8-with-libstdc++="\
 clang++-3.8 \
 -stdlib=libstdc++ \
 -nostdinc++ \
--isystem /usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/../../../../../../include/c++/5.3.0 \
--isystem /usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/../../../../../../include/c++/5.3.0/x86_64-apple-darwin15.0.0 \
--isystem /usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/../../../../../../include/c++/5.3.0/backward \
--isystem /usr/local/Cellar/gcc/5.3.0/include \
--isystem /usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0/include-fixed \
--L /usr/local/Cellar/gcc/5.3.0/lib/gcc/5/gcc/x86_64-apple-darwin15.0.0/5.3.0 \
--L /usr/local/Cellar/gcc/5.3.0/lib/gcc/5 \
+-isystem /usr/local/Cellar/gcc/6.2.0/lib/gcc/6/gcc/x86_64-apple-darwin16.0.0/6.2.0/../../../../../../include/c++/6.2.0 \
+-isystem /usr/local/Cellar/gcc/6.2.0/lib/gcc/6/gcc/x86_64-apple-darwin16.0.0/6.2.0/../../../../../../include/c++/6.2.0/x86_64-apple-darwin16.0.0 \
+-isystem /usr/local/Cellar/gcc/6.2.0/lib/gcc/6/gcc/x86_64-apple-darwin16.0.0/6.2.0/../../../../../../include/c++/6.2.0/backward \
+-isystem /usr/local/Cellar/gcc/6.2.0/include \
+-isystem /usr/local/Cellar/gcc/6.2.0/lib/gcc/6/gcc/x86_64-apple-darwin16.0.0/6.2.0/include-fixed \
+-L /usr/local/Cellar/gcc/6.2.0/lib/gcc/6/gcc/x86_64-apple-darwin16.0.0/6.2.0 \
+-L /usr/local/Cellar/gcc/6.2.0/lib/gcc/6 \
 "
 
 alias clang++-3.8-with-libc++="\

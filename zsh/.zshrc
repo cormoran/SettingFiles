@@ -21,3 +21,4 @@ source ~/.zsh_local
 
 echo "loaded : .zshrc"
 source /Users/ukai/Program/src/github.com/cormoran/CompetitiveProgramming/tool/src/alias.sh
+export PATH="/usr/local/sbin:$PATH"

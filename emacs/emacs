@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (load (expand-file-name "~/.emacs.d/init.el"))
 (put 'upcase-region 'disabled nil)
 (custom-set-variables
@@ -13,7 +20,10 @@
  '(google-translate-default-target-language "en")
  '(haskell-tags-on-save t)
  '(irony-additional-clang-options (quote ("-std=c++11")))
- '(irony-cdb-compilation-databases (quote (irony-cdb-clang-complete))))
+ '(irony-cdb-compilation-databases (quote (irony-cdb-clang-complete)))
+ '(package-selected-packages
+   (quote
+    (yatex yaml-mode web-mode visual-regexp-steroids solarized-theme smartparens smart-compile sequential-command scala-mode2 rust-mode py-autopep8 pcre2el osx-clipboard molokai-theme js2-mode irony-eldoc init-loader iedit ido-vertical-mode haskell-mode graphviz-dot-mode google-translate google-c-style go-eldoc fuzzy flycheck-rust flycheck-pos-tip flycheck-irony exec-path-from-shell electric-spacing eldoc-extension cpputils-cmake company-quickhelp company-jedi company-irony-c-headers company-irony company-go color-theme cmake-mode clang-format c-eldoc bison-mode auto-complete-auctex auto-async-byte-compile auctex arduino-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
