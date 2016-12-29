@@ -1,0 +1,12 @@
+; emacs 設定最小構成
+
+(global-set-key "\C-h" 'delete-backward-char)
+
+(column-number-mode t)
+
+(when (boundp 'global-linum-mode)  
+  (global-linum-mode t)
+)
+
+
+

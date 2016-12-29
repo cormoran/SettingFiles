@@ -18,7 +18,12 @@ CURDIR=`pwd`
 
 Install() {
     case ${1} in
-	all)
+	simple)
+	    ./simple/install.sh
+	    return 0
+
+
+	all)	    
 	    Install bash zsh tmux emacs vim dotfiles
 	    return 0
 	    ;;

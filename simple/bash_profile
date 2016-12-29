@@ -1,0 +1,24 @@
+#
+# bashrc 最小構成
+#
+
+
+# export PATH="/foo/bar:$PATH"
+
+export EDITOR=emacs
+export VISUAL=emacs
+
+# ls (BSD)
+export CLICOLOR=1
+alias ls='ls -F'
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ls -Alh'
+alias l='ls'
+
+# others
+alias ..='cd ..'
+alias ...='cd ../../'
+alias c='cd'
+alias e='emacs'
+alias em='emacs'
