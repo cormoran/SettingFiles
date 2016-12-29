@@ -19,9 +19,11 @@ CURDIR=`pwd`
 Install() {
     case ${1} in
 	simple)
+	    ColorEcho $yellow "> installing simple profile"
 	    ./simple/install.sh
+	    ColorEcho $yellow ":)"
 	    return 0
-
+	    ;;
 
 	all)	    
 	    Install bash zsh tmux emacs vim dotfiles
