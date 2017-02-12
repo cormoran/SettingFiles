@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: def_rep
-# key: defrep
-# --
-#define rep(i,j) for(long long i=0;i<(j);i++)
-#define repeat(i,j,k) for(long long i=(j);i<(k);i++)
-#define rrep(i,j) for(long long i=(j);i>=0;i--)

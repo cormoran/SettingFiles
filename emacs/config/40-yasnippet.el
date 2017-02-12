@@ -2,7 +2,7 @@
   :init
 
   :config
-  (setq yas-snippet-dirs '("~/.emacs.d/mysnippets"))
+  (setq yas-snippet-dirs '("~/.emacs.d/mysetting/mysnippets"))
   (setq yas/use-menu nil)
   ;;コメントやリテラルではスニペットを展開しない
   (setq yas/buffer-local-condition

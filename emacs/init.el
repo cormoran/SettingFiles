@@ -4,6 +4,11 @@
 ;;
 ;; 参考:
 ;;    http://vdeep.net/emacs-cask
+;;
+;; @note
+;; 自身のパス : file-name-directory
+;;
+
 
 (when (eq system-type 'darwin) ; Mac
   ;; brew install cask 仮定
@@ -42,5 +47,5 @@
 
 (require 'init-loader)
 (require 'use-package)
-(init-loader-load "~/.emacs.d/config")
+(init-loader-load "~/.emacs.d/mysetting/config")
 

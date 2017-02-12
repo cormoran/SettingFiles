@@ -1,1 +1,0 @@
-/Users/ukai/SettingFiles/emacs/emacs.d/

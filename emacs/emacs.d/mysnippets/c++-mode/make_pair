@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: make_pair
-# key: mp
-# --
-make_pair(${1:f},${2:s})
