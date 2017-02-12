@@ -18,13 +18,6 @@ CURDIR=`pwd`
 
 Install() {
     case ${1} in
-	simple)
-	    ColorEcho $yellow "> installing simple profile"
-	    ./simple/install.sh
-	    ColorEcho $yellow ":)"
-	    return 0
-	    ;;
-
 	all)	    
 	    Install bash zsh tmux emacs vim dotfiles
 	    return 0
@@ -36,47 +29,27 @@ Install() {
 	    ;;
 	
 	bash)
-	    ColorEcho $yellow "Not Impremented yet!"
-	    
+	    ColorEcho $green "<--- installing bash settings --->"
+        echo "source $CURDIR/shell/init.sh" >> $HOME/.bash_profile 
 	    ;;	
 	zsh)
-	    ColorEcho $green "<--- installing zsh settings --->"
-	    
-	    git submodule update --init --recursive $CURDIR/zsh
-	    ln -i -s $CURDIR/zsh/.zshrc ~/.zshrc
-	    touch ~/.zsh_local
-	    
+	    ColorEcho $green "<--- installing zsh settings --->"	    
+        ./shell/install_zsh.sh 
 	    ;;      
 	tmux)
 	    ColorEcho $green "<--- installing tmux settings --->"
-	    
-	    git submodule update --init --recursive $CURDIR/tmux
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm        
 	    ln -i -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
-	    mkdir -p ~/.tmux/plugins/
-	    ln -i -s $CURDIR/tmux/tpm/ ~/.tmux/plugins/
-	    
 	    ;;
 	emacs)
 	    ColorEcho $green "<--- installing emacs settings --->"
-
-	    git submodule update --init --recursive $CURDIR/emacs
-	    ln -i -s $CURDIR/emacs/emacs ~/.emacs
-	    ln -i -s $CURDIR/emacs/emacs.d/ ~/.emacs.d
-	    
+        ./emacs/install.sh 
 	    ;;	
-	vim)
-	    ColorEcho $green "<--- installing vim settings --->"
-
-	    ln -i -s $CURDIR/vim/vimrc ~/.vimrc
-	    ln -i -s $CURDIR/vim/vim/ ~/.vim
-	    
-	    ;;
-
 	dotfiles)
 	    ColorEcho $green "<--- installing many dotfiles --->"
 	    for f in $CURDIR/dotfiles/* ; do
-		echo $f
-		ln -i -s  $f ~/.`basename $f`
+		    echo "create symlink ~/.`basename $f`"
+		    ln -i -s  $f ~/.`basename $f`
 	    done	    
 	    ;;
 	*)

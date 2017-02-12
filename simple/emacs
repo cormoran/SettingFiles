@@ -1,4 +1,11 @@
-; emacs 設定最小構成
+;; emacs 設定最小構成
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
 (global-set-key "\C-h" 'delete-backward-char)
 
@@ -8,5 +15,6 @@
   (global-linum-mode t)
 )
 
+(load (expand-file-name "~/.emacs.d/init.el"))
 
-
+;; ここまで
