@@ -1,6 +1,6 @@
 #!/bin/sh
 WORKDIR=$HOME/tmp
-PREFIX='$HOME/local'
+PREFIX=$HOME/local
 VERSION=5.3.1
 
 mkdir $WORKDIR
