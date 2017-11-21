@@ -1,10 +1,10 @@
 #!/bin/sh
 WORKDIR=$HOME/tmp
 PREFIX=$HOME/local
-VERSION=5.4.2
+VERSION=2.1.8-stable
 
 echo """
-====> install zsh
+====> install libevent
 install settings:
     PREFIX : $PREFIX
     VERSION : $VERSION
@@ -13,15 +13,14 @@ install settings:
 
 mkdir -p $WORKDIR
 cd $WORKDIR
-wget https://github.com/zsh-users/zsh/archive/zsh-${VERSION}.tar.gz
-tar zxf zsh-${VERSION}.tar.gz
-cd zsh-zsh-${VERSION}
-./Util/preconfig
+wget https://github.com/libevent/libevent/releases/download/release-${VERSION}/libevent-${VERSION}.tar.gz
+tar zxf libevent-${VERSION}.tar.gz
+cd libevent-${VERSION}
 mkdir build
 cd build
 ../configure --prefix=$PREFIX
 make
 make install
 
-echo '====> zsh install ok'
+echo '====> libevent install ok'
 

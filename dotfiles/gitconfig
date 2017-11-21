@@ -1,6 +1,6 @@
 [user]
-	name = cormoran
-	email = cormoran707@gmail.com
+	# name = cormoran
+	# email = cormoran707@gmail.com
 	
 [core]
 	editor = emacs
@@ -10,17 +10,18 @@
 	ui = true
 	
 [alias]
-	st = status
+	s = status
+	st = status	
+	c = checkout
+	ch = checkout
+	b = branch
+	br = branch
 	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-	
+	g = graph
+	r = remote -v
 [credential]
-	helper = osxkeychain
+	# helper = osxkeychain
 	
-[filter "lfs"]
-	smudge = git-lfs smudge %f
-	required = true
-	clean = git-lfs clean %f
-
 [ghq]
 	root = ~/Program/src
 	

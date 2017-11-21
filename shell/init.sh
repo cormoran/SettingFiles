@@ -1,11 +1,12 @@
 #
 # install:
-#    echo "source /path/to/thisfile" >> .bash_profile
-#    echo "source /path/to/thisfile" >> .zshrc
+#    echo "/path/to/thisfile" >> .bash_profile
+#    echo "/path/to/thisfile" >> .zshrc
 # bash, zsh で動いて欲しい
 
-cd `dirname $0`
-local CURDIR=`pwd`
+ORGDIR=`pwd`
+cd `dirname ${BASH_SOURCE:-$0}`
+CURDIR=`pwd`
 
 for f in $CURDIR/common/*.sh; do
     echo "loading `basename $f`"
@@ -35,3 +36,5 @@ fi
 if [ -e $HOME/.shell_local ]; then
     source $HOME/.shell_local
 fi
+cd $ORGDIR
+

@@ -11,7 +11,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     echo "Target: Mac :: installing **full** emacs setting"
     echo "(load (expand-file-name \"~/.emacs.d/mysetting/init.el\"))" >> $HOME/.emacs
     ln -s $CURDIR/Cask $HOME/.emacs.d/Cask
-    
+    mkdir ~/.emacs.backup/    
     echo """
      TODO :
      brew install cask
@@ -35,6 +35,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     # Linux (simple install)
     echo "Target: Linux :: installing **simple** emacs setting"
     echo "(load (expand-file-name \"~/.emacs.d/mysetting/simple.el\"))" >> $HOME/.emacs
+    mkdir ~/.emacs.backup/
 else
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
