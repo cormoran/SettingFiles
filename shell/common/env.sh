@@ -21,6 +21,15 @@ alias lla='ls -Alh'
 alias l='ls'
 
 #
+# rm
+#
+
+alias rm='echo "You should not use rm command!"; false'
+alias trash='mv --backup=numbered --target-directory=${HOME}/Trash --suffix=. -f'
+alias rmtrash='trash'
+echo 'rm is disabled. use trash instead.'
+
+#
 # 環境変数
 #
 
