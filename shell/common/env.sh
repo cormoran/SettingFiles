@@ -11,6 +11,7 @@ alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias em='emacs'
 alias e='emacs'
+alias ct='column -t'
 
 # ls (BSD)
 export CLICOLOR=1
