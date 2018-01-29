@@ -1,7 +1,7 @@
 #!/bin/sh
 WORKDIR=$HOME/tmp
 PREFIX=$HOME/local
-VERSION=2.3
+VERSION=2.6
 echo """
 ====> install tmux
 install settings:
