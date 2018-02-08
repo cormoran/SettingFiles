@@ -44,4 +44,8 @@ export PATH="$GOPATH/bin:$PATH"
 # nodejs (nodebrew)
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
+# emacs
+export PATH="$HOME/.cask/bin:$PATH"
 
+
+export TERM="xterm-256color"

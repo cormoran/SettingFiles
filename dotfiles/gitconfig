@@ -1,17 +1,13 @@
-[user]
-	# name = cormoran
-	# email = cormoran707@gmail.com
-	
 [core]
 	editor = emacs
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [color]
 	ui = true
-	
+
 [alias]
 	s = status
-	st = status	
+	st = status
 	c = checkout
 	ch = checkout
 	b = branch
@@ -21,7 +17,9 @@
 	r = remote -v
 [credential]
 	# helper = osxkeychain
-	
+
 [ghq]
 	root = ~/Program/src
-	
+
+[include]
+	path = ~/.gitconfig_local

@@ -8,7 +8,7 @@
 
 (depends-on "smart-compile")
 (depends-on "autoinsert")
-(depends-on "eldoc-extension")
+;;(depends-on "eldoc-extension")
 (depends-on "fold-dwim")
 
 (depends-on "google-c-style")
@@ -22,7 +22,7 @@
 (depends-on "irony-eldoc")
 
 (depends-on "flycheck")
-(depends-on "flycheck-cask") 
+(depends-on "flycheck-cask")
 (depends-on "flycheck-irony")
 (depends-on "flycheck-pos-tip")
 
@@ -35,3 +35,5 @@
 
 (depends-on "highlight-symbol")
 (depends-on "ido-vertical-mode")
+(depends-on "elpy")
+(depends-on "py-yapf")

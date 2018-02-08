@@ -4,21 +4,21 @@ cd `dirname $0`
 CURDIR=`pwd`
 
 mkdir -p $HOME/.emacs.d
-ln -s $CURDIR/ $HOME/.emacs.d/mysetting
+mkdir -p $HOME/.emacs.backup/
+ln --backup=numbered -s $CURDIR/ $HOME/.emacs.d/mysetting
+ln --backup=numbered -s $CURDIR/Cask $HOME/.emacs.d/Cask
+touch $HOME/.emacs
+echo "(load (expand-file-name \"~/.emacs.d/mysetting/init.el\"))" >> $HOME/.emacs
+
+echo "Installing emacs cask"
+curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+cd ~/.emacs.d/
+cask install
 
 if [ "$(uname)" == 'Darwin' ]; then
-    # Mac (full install)
-    echo "Target: Mac :: installing **full** emacs setting"
-    echo "(load (expand-file-name \"~/.emacs.d/mysetting/init.el\"))" >> $HOME/.emacs
-    ln -s $CURDIR/Cask $HOME/.emacs.d/Cask
-    mkdir ~/.emacs.backup/    
+    # Mac
     echo """
-     TODO :
-     brew install cask
-     cd ~/.emacs.d/
-     cask install
-
-     To enable irony: 
+     To enable irony:
      (Mac OS 10.12.2, 2016/12/29)
      1. brew install llvm38
      2. run following command (example)
@@ -32,13 +32,8 @@ if [ "$(uname)" == 'Darwin' ]; then
 """
 
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-    # Linux (simple install)
-    echo "Target: Linux :: installing **simple** emacs setting"
-    echo "(load (expand-file-name \"~/.emacs.d/mysetting/simple.el\"))" >> $HOME/.emacs
-    mkdir ~/.emacs.backup/
+    # Linux
+    :
 else
-  echo "Your platform ($(uname -a)) is not supported."
-  exit 1
+    echo "Your platform ($(uname -a)) is not supported."
 fi
-
-

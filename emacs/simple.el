@@ -17,7 +17,7 @@
 (line-number-mode t)
 
 ;; (set-face-foreground 'linum "white") ;; 行番号の色 (黒背景で変な時等に)
-(global-hl-line-mode t) ; カーソルの行をハイライト
+;; (global-hl-line-mode t) ; カーソルの行をハイライト 色が被って見えない
 (show-paren-mode t) ; 括弧をハイライト
 (setq show-paren-style 'mixed) ;括弧が画面をまたぐとき全体をハイライト
 (transient-mark-mode t) ; 選択範囲をハイライト

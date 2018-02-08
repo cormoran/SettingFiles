@@ -4,7 +4,7 @@
   :config
   (setq autoinsert-user-name "cormoran")
   (setq auto-insert-directory "~/.emacs.d/mysetting/template")
-  
+
   (setq auto-insert-alist
         (nconc '(
                  ("\\.comp.cpp$" . ["template.comp.cpp" my-template])
@@ -17,7 +17,7 @@
                  ("CMakeLists.txt" . ["template.cmakelists.txt" my-template])
                  )))
   (use-package cl)
-  
+
   (defvar template-replacements-alists
     '(("%file%"             . (lambda ()
                                 (file-name-nondirectory
@@ -29,7 +29,7 @@
       ("%date%" . (lambda () (format-time-string "%Y-%m-%d")))
       ("%author%" . (lambda () (identity autoinsert-user-name)))
       ("%procon%" . (lambda () ""))
-      ))  
+      ))
   (defun my-template ()
     (time-stamp)
     (mapc #'(lambda(c)
@@ -38,5 +38,5 @@
                 (replace-string (car c) (funcall (cdr c)) nil)))
           template-replacements-alists)
     (goto-char (point-max))
-    (message "done."))    
+    (message "done."))
   )

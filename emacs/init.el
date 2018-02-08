@@ -9,43 +9,30 @@
 ;; 自身のパス : file-name-directory
 ;;
 
+(global-set-key "\C-h" 'delete-backward-char) ;; 生死に関わるのでとにかく先に設定
 
-(when (eq system-type 'darwin) ; Mac
-  ;; brew install cask 仮定
-  (require 'cask)
+(defun init-cask (loaded)
+  (cond (loaded (cask-initialize))
+	(t (message "failed to load cask!"))))
+
+(message "System is %s." system-type)
+(cond
+ ((eq system-type 'darwin)     (init-cask (require 'cask nil t))) ; for brew
+ ((eq system-type 'gnu/linux)  (init-cask (require 'cask "~/.cask/cask.el" t)))
+ ((eq system-type 'windows-nt) (init-cask nil))
+ (t (message "unknown os"))
+)
+
+;; use-package が存在しない時のエラー対策
+;; Ref: http://qiita.com/kai2nenobu/items/5dfae3767514584f5220
+(unless (require 'use-package nil t) (defmacro use-package (&rest args)))
+
+(use-package init-loader
+  :init
+  (init-loader-load "~/.emacs.d/mysetting/config.common")
+  (cond
+   ((eq system-type 'darwin)     (init-loader-load "~/.emacs.d/mysetting/config.mac"))
+   ((eq system-type 'gnu/linux)  (init-loader-load "~/.emacs.d/mysetting/config.linux"))
+   ((eq system-type 'windows-nt) (init-loader-load "~/.emacs.d/mysetting/config.win"))
+   )
   )
-(when (eq system-type 'gnu/linux) ; Linux
-  ;; 未検証
-  ;; (require 'cask "~/.cask/cask.el")
-)
-(when (eq system-type 'windows-nt) ; Windows
-  
-)
-
-(cask-initialize)
-
-;;
-;; 自動インストールはしないパッケージのインストール
-;;
-;; TODO : 
-;;    競合しない？
-
-(add-to-list 'load-path "~/.emacs.d/elpa/")
-(package-initialize)
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "http://melpa.milkbox.net/packages/")
-	)
-      )
-
-
-;;
-;; 各種設定のロード
-;;
-;; 参考:
-;;    http://qiita.com/kai2nenobu/items/5dfae3767514584f5220
-
-(require 'init-loader)
-(require 'use-package)
-(init-loader-load "~/.emacs.d/mysetting/config")
-
