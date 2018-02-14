@@ -1,13 +1,18 @@
 #!/bin/sh
-WORKDIR=$HOME/tmp
-PREFIX=$HOME/local
-VERSION=25.3
+echo """====> install emacs
 
-mkdir -p $WORKDIR
-cd $WORKDIR
 
-wget http://ftp.gnu.org/pub/gnu/emacs/emacs-${VERSION}.tar.gz
-tar zxvf emacs-${VERSION}.tar.gz
-cd emacs-${VERSION}
+     PREFIX : ${PREFIX:=$HOME/local}
+     VERSION : ${EMACS_INSTALL_VERSION:=25.3}
+     WORKDIR : ${MY_INSTALL_WORKDIR:=$HOME/tmp}
+
+"""
+
+mkdir -p $MY_INSTALL_WORKDIR
+cd $MY_INSTALL_WORKDIR
+
+wget http://ftp.gnu.org/pub/gnu/emacs/emacs-${EMACS_INSTALL_VERSION}.tar.gz
+tar zxvf emacs-${EMACS_INSTALL_VERSION}.tar.gz
+cd emacs-${EMACS_INSTALL_VERSION}
 ./configure --without-x --prefix=$PREFIX
 make && make install

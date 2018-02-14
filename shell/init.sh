@@ -13,28 +13,27 @@ for f in $CURDIR/common/*.sh; do
     source $f
 done
 
-if [[ -n $BASH_VERSION ]]; then
-    echo "<=== LOADING BASH SETTINGS ===>"
-    for f in $CURDIR/bash/*.bash; do
-        echo "loading `basename $f`"
-        source $f
-    done
-    if [ -e $HOME/.bash_local ]; then
-        source $HOME/.bash_local
-    fi
-elif [[ -n $ZSH_VERSION ]]; then
-    echo "<=== LOADING ZSH SETTINGS ===>"
-    for f in $CURDIR/zsh/*.zsh; do
-        echo "loading `basename $f`"
-        source $f
-    done
-    if [ -e $HOME/.zsh_local ]; then
-        source $HOME/.zsh_local
-    fi
-fi
+# if [[ -n $BASH_VERSION ]]; then
+#     echo "<=== LOADING BASH SETTINGS ===>"
+#     for f in $CURDIR/bash/*.bash; do
+#         echo "loading `basename $f`"
+#         source $f
+#     done
+#     if [ -e $HOME/.bash_local ]; then
+#         source $HOME/.bash_local
+#     fi
+# elif [[ -n $ZSH_VERSION ]]; then
+#     echo "<=== LOADING ZSH SETTINGS ===>"
+#     for f in $CURDIR/zsh/*.zsh; do
+#         echo "loading `basename $f`"
+#         source $f
+#     done
+#     if [ -e $HOME/.zsh_local ]; then
+#         source $HOME/.zsh_local
+#     fi
+# fi
 
-if [ -e $HOME/.shell_local ]; then
-    source $HOME/.shell_local
-fi
+# if [ -e $HOME/.shell_local ]; then
+#     source $HOME/.shell_local
+# fi
 cd $ORGDIR
-

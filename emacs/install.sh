@@ -12,6 +12,7 @@ echo "(load (expand-file-name \"~/.emacs.d/mysetting/init.el\"))" >> $HOME/.emac
 
 echo "Installing emacs cask"
 curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+export PATH=$PATH:$HOME/.cask/bin
 cd ~/.emacs.d/
 cask install
 

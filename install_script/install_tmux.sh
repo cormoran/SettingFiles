@@ -1,25 +1,22 @@
 #!/bin/sh
-WORKDIR=$HOME/tmp
-PREFIX=$HOME/local
-VERSION=2.6
-echo """
-====> install tmux
-install settings:
-    PREFIX : $PREFIX
-    VERSION : $VERSION
-    WORKDIR : $WORKDIR
+echo """====> install tmux
+
+
+     PREFIX : ${PREFIX:=$HOME/local}
+     VERSION : ${TMUX_INSTALL_VERSION:=2.6}
+     WORKDIR : ${MY_INSTALL_WORKDIR:=$HOME/tmp}
+
 """
 
-mkdir -p $WORKDIR
-cd $WORKDIR
-wget https://github.com/tmux/tmux/releases/download/$VERSION/tmux-${VERSION}.tar.gz
-tar zxf tmux-${VERSION}.tar.gz
-cd tmux-${VERSION}
+mkdir -p $MY_INSTALL_WORKDIR
+cd $MY_INSTALL_WORKDIR
+wget https://github.com/tmux/tmux/releases/download/$TMUX_INSTALL_VERSION/tmux-${TMUX_INSTALL_VERSION}.tar.gz
+tar zxf tmux-${TMUX_INSTALL_VERSION}.tar.gz
+cd tmux-${TMUX_INSTALL_VERSION}
 mkdir build
 cd build
 PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig ../configure --prefix=$PREFIX
 make
 make install
 
-echo '====> tmux install ok'
-
+echo '====> tmux OK'

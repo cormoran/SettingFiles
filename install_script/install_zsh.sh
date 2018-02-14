@@ -1,21 +1,18 @@
 #!/bin/sh
-WORKDIR=$HOME/tmp
-PREFIX=$HOME/local
-VERSION=5.4.2
+echo """====> install zsh
 
-echo """
-====> install zsh
-install settings:
-    PREFIX : $PREFIX
-    VERSION : $VERSION
-    WORKDIR : $WORKDIR
+
+     PREFIX : ${PREFIX:=$HOME/local}
+     VERSION : ${ZSH_INSTALL_VERSION:=5.4.2}
+     WORKDIR : ${MY_INSTALL_WORKDIR:=$HOME/tmp}
+
 """
 
-mkdir -p $WORKDIR
-cd $WORKDIR
-wget https://github.com/zsh-users/zsh/archive/zsh-${VERSION}.tar.gz
-tar zxf zsh-${VERSION}.tar.gz
-cd zsh-zsh-${VERSION}
+mkdir -p $MY_INSTALL_WORKDIR
+cd $MY_INSTALL_WORKDIR
+wget https://github.com/zsh-users/zsh/archive/zsh-${ZSH_INSTALL_VERSION}.tar.gz
+tar zxf zsh-${ZSH_INSTALL_VERSION}.tar.gz
+cd zsh-zsh-${ZSH_INSTALL_VERSION}
 ./Util/preconfig
 mkdir build
 cd build
@@ -23,5 +20,4 @@ cd build
 make
 make install
 
-echo '====> zsh install ok'
-
+echo '====> zsh OK'

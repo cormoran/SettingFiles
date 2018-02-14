@@ -1,26 +1,19 @@
 #!/bin/sh
-WORKDIR=$HOME/tmp
-PREFIX=$HOME/local
-VERSION=2.1.8-stable
-
-echo """
-====> install libevent
-install settings:
-    PREFIX : $PREFIX
-    VERSION : $VERSION
-    WORKDIR : $WORKDIR
+echo """====> install libevent
+    PREFIX : ${PREFIX:=$HOME/local}
+    VERSION : ${LIBEVENT2_INSTALL_VERSION:=5.4.2}
+    MY_INSTALL_WORKDIR : ${MY_INSTALL_MY_INSTALL_WORKDIR:=$HOME/tmp}
 """
 
-mkdir -p $WORKDIR
-cd $WORKDIR
-wget https://github.com/libevent/libevent/releases/download/release-${VERSION}/libevent-${VERSION}.tar.gz
-tar zxf libevent-${VERSION}.tar.gz
-cd libevent-${VERSION}
+mkdir -p $MY_INSTALL_WORKDIR
+cd $MY_INSTALL_WORKDIR
+wget https://github.com/libevent/libevent/releases/download/release-${LIBEVENT2_INSTALL_VERSION}/libevent-${LIBEVENT2_INSTALL_VERSION}.tar.gz
+tar zxf libevent-${LIBEVENT2_INSTALL_VERSION}.tar.gz
+cd libevent-${LIBEVENT2_INSTALL_VERSION}
 mkdir build
 cd build
 ../configure --prefix=$PREFIX
 make
 make install
 
-echo '====> libevent install ok'
-
+echo '====> libevent OK'

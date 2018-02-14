@@ -28,24 +28,24 @@ Install() {
 	    ;;
 	bash)
 	    ColorEcho $green "<--- installing bash settings --->"
-            echo "source $CURDIR/shell/init.sh" >> $HOME/.bash_profile
+        echo "source $CURDIR/shell/init.sh" >> $HOME/.bash_profile
 	    ;;
 	zsh)
 	    # need zsh version ^5.3.1 (for auto complete)
 	    # checked on mac, linux
 	    ColorEcho $green "<--- installing zsh settings --->"
-            ./shell/install_zsh.sh
+        zsh ./shell/install_zsh.sh
 	    ;;
 	tmux)
 	    ColorEcho $green "<--- installing tmux settings --->"
-            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	    ln -i -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	    ln --backup=numbered -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
 	    ;;
 	emacs)
         # checked on mac, linux
         # on linux : simple install, on mac : full install
 	    ColorEcho $green "<--- installing emacs settings --->"
-            ./emacs/install.sh
+        ./emacs/install.sh
 	;;
 	dotfiles)
 	    ColorEcho $green "<--- installing many dotfiles --->"
