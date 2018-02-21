@@ -14,11 +14,18 @@ alias e='emacs'
 alias ct='column -t'
 
 # ls (BSD)
-alias ls='/usr/bin/ls --color=auto -F'
-alias ll='/usr/bin/ls --color=auto -lhF'
-alias la='/usr/bin/ls --color=auto -AF'
-alias lla='/usr/bin/ls --color=auto -AlhF'
-alias l='ls'
+LS='ls'
+if [ "$(uname)" = 'Darwin' ]; then
+LS='/bin/ls -G'
+elif [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
+LS='/usr/bin/ls --color=auto'
+fi
+alias ls="$LS -F"
+alias sl="$LS -F"
+alias ll="$LS -lhF"
+alias la="$LS -AF"
+alias lla="$LS -AlhF"
+alias l="$LS"
 
 # color
 export TERM="xterm-256color"
@@ -28,6 +35,7 @@ export TERM="xterm-256color"
 # rm
 #
 
+mkdir -p "${HOME}/Trash"
 alias rm='echo "You should not use rm command!"; false'
 alias trash='mv --backup=numbered --target-directory=${HOME}/Trash --suffix=. -f'
 alias rmtrash='trash'
@@ -43,6 +51,10 @@ export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
 # golang
 
+if [ -e $HOME/local/go ]; then
+    export GOROOT=$HOME/local/go
+    export PATH=$PATH:$GOROOT/bin
+fi
 if [ -e $HOME/local/go ]; then
     export GOROOT=$HOME/local/go
     export PATH=$PATH:$GOROOT/bin

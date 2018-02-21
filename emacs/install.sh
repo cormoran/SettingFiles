@@ -1,12 +1,21 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 cd `dirname $0`
 CURDIR=`pwd`
 
+case ${OSTYPE} in
+    darwin*)
+	LN='gln'
+        ;;
+    linux*)
+	LN='ln'
+        ;;
+esac
+
 mkdir -p $HOME/.emacs.d
 mkdir -p $HOME/.emacs.backup/
-ln --backup=numbered -s $CURDIR/ $HOME/.emacs.d/mysetting
-ln --backup=numbered -s $CURDIR/Cask $HOME/.emacs.d/Cask
+$LN --backup=numbered -s $CURDIR/ $HOME/.emacs.d/mysetting
+$LN --backup=numbered -s $CURDIR/Cask $HOME/.emacs.d/Cask
 touch $HOME/.emacs
 echo "(load (expand-file-name \"~/.emacs.d/mysetting/init.el\"))" >> $HOME/.emacs
 

@@ -1,9 +1,8 @@
 #! /usr/bin/env bash
 
-# tool
 red=31
 green=32
-yellow=33
+lyellow=33n
 blue=34
 
 ColorEcho() {
@@ -12,52 +11,61 @@ ColorEcho() {
     echo -e "\033[${color}m$@\033[m"
 }
 
-
 cd `dirname $0`
 CURDIR=`pwd`
+source "./shell/init.sh"
 
 Install() {
+    case ${OSTYPE} in
+        darwin*)
+	        LN='gln'
+            ;;
+        linux*)
+	        LN='ln'
+            ;;
+    esac
     case ${1} in
-	all)
-	    Install bash zsh tmux emacs vim dotfiles
-	    return 0
-	    ;;
-	default)
-	    Install zsh tmux emacs dotfiles
-	    return 0
-	    ;;
-	bash)
-	    ColorEcho $green "<--- installing bash settings --->"
-        echo "source $CURDIR/shell/init.sh" >> $HOME/.bash_profile
-	    ;;
-	zsh)
-	    # need zsh version ^5.3.1 (for auto complete)
-	    # checked on mac, linux
-	    ColorEcho $green "<--- installing zsh settings --->"
-        zsh ./shell/install_zsh.sh
-	    ;;
-	tmux)
-	    ColorEcho $green "<--- installing tmux settings --->"
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	    ln --backup=numbered -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
-	    ;;
-	emacs)
-        # checked on mac, linux
-        # on linux : simple install, on mac : full install
-	    ColorEcho $green "<--- installing emacs settings --->"
-        ./emacs/install.sh
-	;;
-	dotfiles)
-	    ColorEcho $green "<--- installing many dotfiles --->"
-	    for f in $CURDIR/dotfiles/* ; do
-		    echo "create symlink ~/.`basename $f`"
-		    ln --backup=numbered -s  $f ~/.`basename $f`
-	    done
-        ln --backup=numbered -s $CURDIR/config/ ~/.config
-	    ;;
-	*)
-	    return 0
-	    ;;
+	    all)
+	        Install bash zsh tmux emacs vim dotfiles
+	        return 0
+	        ;;
+	    default)
+	        Install zsh tmux emacs dotfiles
+	        return 0
+	        ;;
+	    bash)
+	        ColorEcho $green "<--- installing bash settings --->"
+            touch $HOME/.bash_profile
+            echo "source $CURDIR/shell/init.sh" >> $HOME/.bash_profile
+	        ;;
+	    zsh)
+	        # need zsh version ^5.3.1 (for auto complete)
+	        # checked on mac, linux
+	        ColorEcho $green "<--- installing zsh settings --->"
+            zsh ./shell/install_zsh.sh
+	        ;;
+	    tmux)
+	        ColorEcho $green "<--- installing tmux settings --->"
+            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	        $LN --backup=numbered -s $CURDIR/tmux/tmux.conf ~/.tmux.conf
+	        ;;
+	    emacs)
+            # checked on mac, linux
+            # on linux : simple install, on mac : full install
+	        ColorEcho $green "<--- installing emacs settings --->"
+            ./emacs/install.sh
+	        ;;
+	    dotfiles)
+	        ColorEcho $green "<--- installing many dotfiles --->"
+	        for f in $CURDIR/dotfiles/* ; do
+		        echo "create symlink ~/.`basename $f`"
+		        $LN --backup=numbered -s  $f ~/.`basename $f`
+	        done
+            $LN --backup=numbered -s $CURDIR/config/ ~/.config
+	        ;;
+	    *)
+	        return 0
+	        ;;
     esac
     shift
     Install $@

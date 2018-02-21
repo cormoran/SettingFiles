@@ -16,12 +16,7 @@
 	(t (message "failed to load cask!"))))
 
 (message "System is %s." system-type)
-(cond
- ((eq system-type 'darwin)     (init-cask (require 'cask nil t))) ; for brew
- ((eq system-type 'gnu/linux)  (init-cask (require 'cask "~/.cask/cask.el" t)))
- ((eq system-type 'windows-nt) (init-cask nil))
- (t (message "unknown os"))
-)
+(init-cask (require 'cask "~/.cask/cask.el" t))
 
 ;; use-package が存在しない時のエラー対策
 ;; Ref: http://qiita.com/kai2nenobu/items/5dfae3767514584f5220
