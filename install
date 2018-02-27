@@ -61,7 +61,11 @@ Install() {
 		        echo "create symlink ~/.`basename $f`"
 		        $LN --backup=numbered -s  $f ~/.`basename $f`
 	        done
-            $LN --backup=numbered -s $CURDIR/config/ ~/.config
+            mkdir -p $HOME/.config
+            for f in $CURDIR/config/*; do
+                echo "create symlink ~/.config/`basename $f`"
+                $LN --backup=numbered -s $f ~/.config/`basename $f`
+            done
 	        ;;
 	    *)
 	        return 0
