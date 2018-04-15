@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+free -h | grep Mem | awk -c '{ print $7 }'

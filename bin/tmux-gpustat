@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+from __future__ import print_function
+import json, sys, subprocess
+
+
+def show(p):
+    if len(p[1]) > 0:
+        users = ','.join(map(lambda p: p['user'], p[1]))
+        return '{:2}% {}'.format(p[0], users)
+    return '{:2}%'.format(p[0])
+
+
+try:
+    res = subprocess.run(['gpustat', '--json'], stdout=subprocess.PIPE)
+    res = subprocess.run(['gpustat', '--json', '-u'], stdout=subprocess.PIPE)
+    res = json.loads(res.stdout)
+    # res = json.load(sys.stdin, encoding='utf-8')
+    stats = [(
+        int(float(g['memory.used']) / float(g['memory.total']) * 100),
+        g['processes'],
+    ) for g in res['gpus']]
+    print('|'.join(map(show, stats)))
+except:
+    print('gpustat error')

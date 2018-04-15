@@ -49,7 +49,6 @@ echo 'rm is disabled. use trash instead.'
 export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/SettingFiles/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/SettingFiles/script:$PATH"
 
 # golang
 
