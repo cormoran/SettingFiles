@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+ifconfig en0 inet | sed -e '1d' -e 's/^.*inet //' -e 's/ netmask.*$//'
