@@ -12,7 +12,7 @@ setw -g mouse on
 # bind -n WheelUpPane   select-pane -t= \; copy-mode -e \; send-keys -M
 # bind -n WheelDownPane select-pane -t= \;                 send-keys -M
 
-set -g @online_icon "#[bg=cyan] "
+set -g @online_icon " "
 set -g @offline_icon "#[bg=red] "
 
 set -g status-left-length 60
@@ -21,3 +21,7 @@ set -g status-right-length 60
 set -g status-justify "centre"
 set -g status-left '#{?client_prefix,#[reverse],} [#S] #[default]'
 set -g status-right " #{battery_percentage} #{online_status}#(ip-local)#[default] %m/%d(%a)%H:%M #[fg=white] #[default]"
+
+set-option -g status-bg colour235
+set-option -g status-fg colour4
+set-window-option -g window-status-current-fg colour3
