@@ -11,7 +11,7 @@ echo """====> install rbenv
 """
 
 git clone https://github.com/rbenv/rbenv.git $RBENV_PREFIX
-git clone https://github.com/rbenv/ruby-build.git ~/$RBENV_PREFIX/plugins/ruby-build
+git clone https://github.com/rbenv/ruby-build.git $RBENV_PREFIX/plugins/ruby-build
 cd $RBENV_PREFIX && src/configure && make -C src
 export PATH="$HOME/$RBENV_PREFIX/bin:$PATH"
 eval "$(rbenv init -)"

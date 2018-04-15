@@ -1,8 +1,8 @@
 #!/bin/sh
 echo """====> install libevent
     PREFIX : ${PREFIX:=$HOME/local}
-    VERSION : ${LIBEVENT2_INSTALL_VERSION:=5.4.2}
-    MY_INSTALL_WORKDIR : ${MY_INSTALL_MY_INSTALL_WORKDIR:=$HOME/tmp}
+    VERSION : ${LIBEVENT2_INSTALL_VERSION:=2.1.8-stable}
+    MY_INSTALL_WORKDIR : ${MY_INSTALL_WORKDIR:=$HOME/tmp}
 """
 
 mkdir -p $MY_INSTALL_WORKDIR

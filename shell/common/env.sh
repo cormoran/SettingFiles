@@ -16,9 +16,13 @@ alias ct='column -t'
 # ls (BSD)
 LS='ls'
 if [ "$(uname)" = 'Darwin' ]; then
-LS='/bin/ls -G'
+    LS='/bin/ls -G'
 elif [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
-LS='/usr/bin/ls --color=auto'
+    if type /usr/bin/ls > /dev/null; then
+        LS='/usr/bin/ls --color=auto'
+    else
+        LS='/bin/ls --color=auto'
+    fi
 fi
 alias ls="$LS -F"
 alias sl="$LS -F"
