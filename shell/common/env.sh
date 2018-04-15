@@ -48,6 +48,7 @@ echo 'rm is disabled. use trash instead.'
 # 共通
 export PATH="$HOME/local/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/SettingFiles/script:$PATH"
 
 # golang
 
@@ -72,6 +73,11 @@ export PATH="$HOME/.cask/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+anaconda=`ls ~/.pyenv/versions | grep anaconda`
+if [ -n $anaconda ]; then
+    alias conda-activate="source $HOME/.pyenv/versions/$anaconda/bin/activate"
+    alias conda-deactivate="source $HOME/.pyenv/versions/$anaconda/bin/deactivate"
+fi
 
 # ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
