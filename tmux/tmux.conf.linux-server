@@ -1,0 +1,6 @@
+set -g status-left-length 60
+set -g status-right-length 60
+
+set -g status-justify "centre"
+set -g status-left '#{?client_prefix,#[reverse],}#h[#S]#[default]'
+set -g status-right ""
