@@ -5,9 +5,10 @@ import json, sys, subprocess
 
 def show(p):
     if len(p[1]) > 0:
-        users = ','.join(map(lambda p: p['user'], p[1]))
-        return '{:2}% {}'.format(p[0], users)
-    return '{:2}%'.format(p[0])
+        key = 'user' if 'user' in p[1][0] else 'username'
+        user = p[1][0][key][:2] + ('..' if len(p[1]) > 1 else '')
+        return '{}:#[fg=red]{:2}% {}#[default]'.format(p[2], p[0], user)
+    return '#[fg=white]{:2}%#[default]'.format(p[0])
 
 
 try:
@@ -18,6 +19,7 @@ try:
     stats = [(
         int(float(g['memory.used']) / float(g['memory.total']) * 100),
         g['processes'],
+        g['index'],
     ) for g in res['gpus']]
     print('|'.join(map(show, stats)))
 except:
