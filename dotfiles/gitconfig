@@ -15,11 +15,10 @@
 	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 	g = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 	r = remote -v
-[credential]
-	# helper = osxkeychain
-
 [ghq]
 	root = ~/Program/src
 
 [include]
 	path = ~/.gitconfig_local
+[credential]
+	helper = cache --timeout 144000 # 100 days
