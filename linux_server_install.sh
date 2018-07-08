@@ -10,5 +10,6 @@ install_script/install_peco.sh
 install_script/install_jq.sh
 install_script/install_ghq.sh
 install_script/install_dmd.sh
+install_script/install_dropbox.sh
 export PATH=$HOME/local/bin:$PATH
 ./install all
