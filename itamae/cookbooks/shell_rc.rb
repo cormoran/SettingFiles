@@ -23,7 +23,7 @@ template "#{node[:shell_rc_d]}/shell.sh" do
 end
 
 
-%w(.bashrc .zshrc).each do |file|
+%w(.bash_profile .zshrc).each do |file|
   file_path = "#{ENV['HOME']}/#{file}"
   file file_path do
     action :create
