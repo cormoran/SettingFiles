@@ -1,3 +1,4 @@
+# coding: utf-8
 node.reverse_merge!({
                       :prefix => "#{ENV['HOME']}/local2",
                       :work_dir => "#{ENV['HOME']}/tmp",
@@ -15,7 +16,7 @@ end
 
 execute "download ghq" do
   cwd node[:work_dir]
-  command "wget https://github.com/motemen/ghq/releases/download/#{node[:ghq_version]}/ghq_linux_386.zip && unzip ghq_linux_386.zip"
+  command "wget https://github.com/motemen/ghq/releases/download/#{node[:ghq_version]}/ghq_linux_386.zip && unzip -o ghq_linux_386.zip"
   not_if "test -e #{node[:work_dir]}/ghq_linux_386.zip"
 end
 
