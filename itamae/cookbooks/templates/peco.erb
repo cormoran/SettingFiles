@@ -1,0 +1,40 @@
+if type peco > /dev/null 2>&1 ; then
+    # zsh の履歴検索にpecoを使う
+    if [ -n "${ZSH_VERSION-}" ]; then
+        function peco-history-selection() {
+            # mac には tac ない
+            # linux には tail -r ない
+            if type tac >/dev/null 2>&1; then
+                BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | peco)
+            else
+                BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco)
+            fi
+	        CURSOR=${#BUFFER}
+    	    zle reset-prompt
+        }
+        zle -N peco-history-selection
+        bindkey '^R' peco-history-selection
+    elif [ -n "${BASH_VERSION-}" ]; then
+        peco-select-history() {
+            local tac
+            if which tac > /dev/null; then
+              tac="tac"
+            else
+              tac="tail -r"
+            fi
+            local l=$(\history | awk '{$1="";print}' | eval $tac | peco | cut -d' ' -f4-)
+            READLINE_LINE="${l}"
+            READLINE_POINT=${#l}
+          }
+        bind -x '"\C-r": peco-select-history'
+    fi
+
+    # with ghq
+    if type ghq > /dev/null ; then
+        alias g='cd `ghq root`/`ghq list | peco`'
+    fi
+    # with hub
+    if type hub > /dev/null ; then
+        alias gh='hub browse `ghq list | peco | cut -d "/" -f 2,3`'
+    fi
+fi

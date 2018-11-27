@@ -1,0 +1,20 @@
+[core]
+	editor = emacs
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[color]
+	ui = true
+
+[alias]
+	s = status
+	st = status
+	c = checkout
+	ch = checkout
+	b = branch
+	br = branch
+	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+	g =     log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+	r = remote -v
+
+[credential]
+	helper = cache --timeout 144000 # 100 days

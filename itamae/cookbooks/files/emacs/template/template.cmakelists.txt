@@ -1,0 +1,17 @@
+cmake_minimum_required( VERSION 2.8 )
+
+project(TEMPALTE)
+
+#set(CMAKE_C_FLAGS "-Wall" )
+#set(CMAKE_CXX_FLAGS "-Wall" )
+
+### src files ###
+file(GLOB_RECURSE headers include/*.h src/*.hpp)
+file(GLOB_RECURSE sources src/*.c src/*.cpp)
+
+include_directories(${PROJECT_SOURCE_DIR}/include/)
+
+### ### Executable ### ###
+add_executable(${PROJECT_NAME} ${headers} ${sources})
+#add_dependencies(${PROJECT_NAME})
+#target_link_libraries( ${PROJECT_NAME})

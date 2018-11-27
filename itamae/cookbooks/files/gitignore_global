@@ -1,0 +1,16 @@
+.python-version
+
+.DS_Store
+
+*~
+*.out
+*.dSYM/
+*#
+[Bb]uild/
+[Dd]ebug/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.log
