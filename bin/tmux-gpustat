@@ -4,7 +4,7 @@ import json, sys, subprocess
 
 
 def show(p):
-    if len(p[1]) > 0:
+    if isinstance(p[1], list) and len(p[1]) > 0:
         key = 'user' if 'user' in p[1][0] else 'username'
         user = p[1][0][key][:2] + ('..' if len(p[1]) > 1 else '')
         return '{}:#[fg=red]{:2}% {}#[default]'.format(p[2], p[0], user)
@@ -16,6 +16,7 @@ try:
     res = subprocess.run(['gpustat', '--json', '-u'], stdout=subprocess.PIPE)
     res = json.loads(res.stdout)
     # res = json.load(sys.stdin, encoding='utf-8')
+
     stats = [(
         int(float(g['memory.used']) / float(g['memory.total']) * 100),
         g['processes'],
