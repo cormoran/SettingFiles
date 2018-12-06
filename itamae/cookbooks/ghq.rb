@@ -6,9 +6,6 @@ node.reverse_merge!({
                       :ghq_root => "#{ENV['HOME']}/Dropbox/Program/src"
                     })
 
-package "wget" do
-  action :install
-end
 
 directory node[:work_dir] do
   action :create

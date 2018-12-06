@@ -9,13 +9,6 @@ node.reverse_merge!({
                       :go_version => "1.9.4"
                     })
 
-#
-# prepare
-#
-
-package "wget" do
-  action :install
-end
 
 [node[:shell_rc_d], node[:work_dir], "#{node[:prefix]}/bin", File.dirname(node[:go_root])].each do |dir|
   execute "prepare directory #{dir}" do

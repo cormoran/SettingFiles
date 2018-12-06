@@ -6,7 +6,10 @@ node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d"
                     })
 
-package "zsh" do
+["zsh"].each do |p|
+    package p do
+        action :install
+    end
 end
 
 git "#{node[:zdotdir]}/.zprezto" do

@@ -7,10 +7,6 @@ node.reverse_merge!({
                         :shell_rc_d => "#{node[:prefix]}/shell_rc.d"
                     })
 
-package "wget" do
-  action :install
-end
-
 execute "prepare directory #{node[:shell_rc_d]}" do
   command "mkdir -p #{node[:shell_rc_d]}"
   not_if "test -e #{node[:shell_rc_d]}"

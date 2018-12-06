@@ -7,9 +7,6 @@ node.reverse_merge!({
                       :anaconda_root => "#{node[:prefix]}/anaconda3",
                       :anaconda_version => "5.3.1"
                     })
-package "wget" do
-  action :install
-end
 
 [node[:work_dir], File.dirname(node[:anaconda_root])].each do |dir|
     execute "prepare directory #{dir}" do

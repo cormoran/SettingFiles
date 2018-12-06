@@ -16,9 +16,6 @@ node.reverse_merge!({
 # prepare
 #
 
-package "curl" do
-  action :install
-end
 
 execute "prepare directory #{node[:shell_rc_d]}" do
   command "mkdir -p #{node[:shell_rc_d]}"

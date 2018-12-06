@@ -3,15 +3,12 @@ node.reverse_merge!({
                       'jq_version' => "1.5"
                     })
 
-package "wget" do
-  action :install
-end
 
 directory "#{node[:prefix]}/bin" do
   action :create
 end
 
-execute "download and install jq" do  
+execute "download and install jq" do
   command "wget https://github.com/stedolan/jq/releases/download/jq-#{node[:jq_version]}/jq-linux64 -O #{node[:prefix]}/bin/jq && chmod +x #{node[:prefix]}/bin/jq"
   not_if "test -e #{node[:prefix]}/bin/jq"
 end
