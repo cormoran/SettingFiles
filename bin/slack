@@ -1,3 +1,0 @@
-#/usr/bin/env bash
-HOST=`uname -n`
-curl -s -X POST --data-urlencode "payload={\"username\": \"${HOST##.*}\", \"text\": \"$*\"}" ${SLACK_WEBHOOK_URL:="unset"} > /dev/null

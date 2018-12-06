@@ -1,7 +1,0 @@
-#! /usr/bin/env bash
-INSTALL_DIR="$HOME/local/share"
-if [ ! -d "${INSTALL_DIR}/yapf" ]; then
-    mkdir -p $INSTALL_DIR
-    git clone https://github.com/google/yapf.git $INSTALL_DIR/yapf
-fi
-PYTHONPATH=${INSTALL_DIR}/yapf python ${INSTALL_DIR}/yapf/yapf $@
