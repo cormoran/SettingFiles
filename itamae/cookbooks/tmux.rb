@@ -4,13 +4,16 @@
 #
 
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2"
+                      :prefix => "#{ENV['HOME']}/local2",
+                      :work_dir => "#{ENV['HOME']}/tmp"
                     })
 node.reverse_merge!({
-                      :tmux_conf_root => "#{node[:prefix]}/tmux"
+                      :tmux_conf_root => "#{node[:prefix]}/tmux",
+                      :tmux_version => "2.6",
+
                     })
 
-package "tmux" do
+package "libevent-dev" do
   action :install
 end
 
@@ -19,6 +22,20 @@ end
     command "mkdir -p #{dir}"
     not_if "test -e #{dir}"
   end
+end
+
+
+
+execute "download tmux" do
+  cwd node[:work_dir]
+  command "wget https://github.com/tmux/tmux/releases/download/#{node[:tmux_version]}/tmux-#{node[:tmux_version]}.tar.gz && tar zxf tmux-#{node[:tmux_version]}.tar.gz"
+  not_if "test -e #{node[:work_dir]}/tmux-#{node[:tmux_version]}"
+end
+
+execute "install tmux" do
+  cwd "#{node[:work_dir]}/tmux-#{node[:tmux_version]}"
+  command "rm -rf build; mkdir build && cd build && PKG_CONFIG_PATH=#{node[:prefix]}/lib/pkgconfig ../configure --prefix=#{node[:prefix]} && make && make install"
+  not_if "test -e #{node[:prefix]}/bin/tmux"
 end
 
 template "#{ENV['HOME']}/.tmux.conf" do
