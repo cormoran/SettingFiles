@@ -10,12 +10,8 @@ node.reverse_merge!({
 node.reverse_merge!({
                       :tmux_conf_root => "#{node[:prefix]}/tmux",
                       :tmux_version => "2.6",
-
+                      :libevent_version => "2.1.8-stable"
                     })
-
-package "libevent-dev" do
-  action :install
-end
 
 [node[:tmux_conf_root]].each do |dir|
   execute "prepare directory #{dir}" do
@@ -24,7 +20,17 @@ end
   end
 end
 
+execute "download libevent" do
+  cwd node[:work_dir]
+  command "wget https://github.com/libevent/libevent/releases/download/release-#{node[:libevent_version]}/libevent-#{node[:libevent_version]}.tar.gz && tar zxf libevent-#{node[:libevent_version]}.tar.gz"
+  not_if "test -e libevent-#{node[:libevent_version]}.tar.gz"
+end
 
+execute "install libevent" do
+  cwd "#{node[:work_dir]}/libevent-#{node[:libevent_version]}"
+  command "rm -rf build; mkdir build && cd build && ../configure --prefix=#{node[:prefix]} && make && make install"
+  not_if "test -e #{node[:prefix]}/lib/libevent.a"
+end
 
 execute "download tmux" do
   cwd node[:work_dir]
