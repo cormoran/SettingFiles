@@ -56,3 +56,9 @@ end
     source "files/tmux.conf.#{os}"
   end
 end
+
+template "#{node[:shell_rc_d]}/tmux.sh" do
+  action :create
+  source "templates/tmux.erb"
+  variables(prefix: node[:prefix])
+end
