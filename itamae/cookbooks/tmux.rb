@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Mac の場合は、パッチを当てる必要があった
 #
@@ -20,13 +21,13 @@ end
   end
 end
 
-template "~/.tmux.conf" do
+template "#{ENV['HOME']}/.tmux.conf" do
     action :create
     source "templates/tmux.conf.erb"
     variables(tmux_conf_root: "#{node[:tmux_conf_root]}")
 end
 
-["osx", "linux-server"] do |os|
+["osx", "linux-server"].each do |os|
   remote_file "#{node[:tmux_conf_root]}/tmux.conf.#{os}" do
     action :create
     source "files/tmux.conf.#{os}"

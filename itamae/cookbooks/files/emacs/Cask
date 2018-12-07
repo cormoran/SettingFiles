@@ -31,9 +31,9 @@
 
 (depends-on "undo-tree")
 ; (depends-on "magit")
-(depends-on "expand-region")
+; (depends-on "expand-region")
 
-(depends-on "highlight-symbol")
-(depends-on "ido-vertical-mode")
+; (depends-on "highlight-symbol")
+; (depends-on "ido-vertical-mode")
 ; (depends-on "elpy")
-(depends-on "py-yapf")
+; (depends-on "py-yapf")
