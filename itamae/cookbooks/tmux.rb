@@ -13,6 +13,10 @@ node.reverse_merge!({
                       :libevent_version => "2.1.8-stable"
                     })
 
+directory node[:work_dir] do
+    action :create
+end
+
 [node[:tmux_conf_root]].each do |dir|
   execute "prepare directory #{dir}" do
     command "mkdir -p #{dir}"
@@ -28,7 +32,7 @@ end
 
 execute "install libevent" do
   cwd "#{node[:work_dir]}/libevent-#{node[:libevent_version]}"
-  command "rm -rf build; mkdir build && cd build && ../configure --prefix=#{node[:prefix]} && make && make install"
+  command "rm -rf build && mkdir build && cd build && ../configure --prefix=#{node[:prefix]} && make && make install"
   not_if "test -e #{node[:prefix]}/lib/libevent.a"
 end
 
@@ -40,7 +44,7 @@ end
 
 execute "install tmux" do
   cwd "#{node[:work_dir]}/tmux-#{node[:tmux_version]}"
-  command "rm -rf build; mkdir build && cd build && PKG_CONFIG_PATH=#{node[:prefix]}/lib/pkgconfig ../configure --prefix=#{node[:prefix]} && make && make install"
+  command "rm -rf build; mkdir build && cd build && ../configure --prefix=#{node[:prefix]} LDFLAGS='-L#{node[:prefix]}/lib' CFLAGS='-I#{node[:prefix]}/include' && make && make install"
   not_if "test -e #{node[:prefix]}/bin/tmux"
 end
 

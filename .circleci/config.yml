@@ -1,10 +1,19 @@
 version: 2
 jobs:
-    build:
-        docker:
-            - image: centos:7
-        working_directory: ~/SettingFiles
-        steps:
-            - checkout
-            - run: itamae/mitamae.sh
-            - run: ~/tmp/mitamae-x86_64-linux local itamae/local.rb --log-level=debug
+  centos:
+    docker:
+      - image: centos:7
+    working_directory: ~/SettingFiles
+    steps:
+      - checkout
+      # - run: itamae/mitamae.sh
+      - run: itamae/mitamae-x86_64-linux local itamae/centos.rb --log-level=debug
+
+  build:
+    docker:
+      - image: ubuntu:bionic
+    working_directory: ~/SettingFiles
+    steps:
+      - checkout
+      # - run: itamae/mitamae.sh
+      - run: itamae/mitamae-x86_64-linux local itamae/ubuntu.rb --log-level=debug

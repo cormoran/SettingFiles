@@ -1,5 +1,3 @@
-include_recipe "cookbooks/linux.rb"
-
 # shell
 include_recipe "cookbooks/shell_rc.rb"
 include_recipe "cookbooks/dotfiles.rb"

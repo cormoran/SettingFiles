@@ -12,13 +12,6 @@ node.reverse_merge!({
                       :ruby_versions => %w(2.5.0)
                     })
 
-["gcc", "make", "bzip2", "openssl-devel", "readline-devel", "zlib-devel"].each do |p|
-  package p do
-    action :install
-  end
-end
-
-
 [node[:shell_rc_d], File.dirname(node[:rbenv_root])].each do |dir|
   execute "prepare directory #{dir}" do
     command "mkdir -p #{dir}"
