@@ -15,16 +15,22 @@ node.reverse_merge!({
     end
   end
 
+case node[:platform]
+when 'osx', 'darwin'
+  os = 'MacOSX'
+when 'debian', 'ubuntu', 'redhat'
+  os = 'Linux'
+end
 
 execute "download anaconda" do
   cwd node[:work_dir]
-  command "wget https://repo.anaconda.com/archive/Anaconda3-#{node[:anaconda_version]}-Linux-x86_64.sh"
-  not_if "test -e Anaconda3-#{node[:anaconda_version]}-Linux-x86_64.sh"
+  command "wget https://repo.anaconda.com/archive/Anaconda3-#{node[:anaconda_version]}-#{os}-x86_64.sh"
+  not_if "test -e Anaconda3-#{node[:anaconda_version]}-#{os}-x86_64.sh"
 end
 
 execute "install anaconda" do
   cwd node[:work_dir]
-  command "bash Anaconda3-#{node[:anaconda_version]}-Linux-x86_64.sh -b -p #{node[:anaconda_root]}"
+  command "bash Anaconda3-#{node[:anaconda_version]}-#{os}-x86_64.sh -b -p #{node[:anaconda_root]}"
   not_if "test -e #{node[:anaconda_root]}"
 end
 
