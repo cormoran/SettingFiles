@@ -1,4 +1,5 @@
 ;; 文字コード
+(set-language-environment "Japanese")
 (prefer-coding-system 'utf-8)
 (set-default 'buffer-file-coding-system 'utf-8) ; 新規作成のファイルをUTF-8に
 (modify-coding-system-alist 'file "\\.bat\\'" 'shift_jis) ; .bat は shift_jis
@@ -24,6 +25,7 @@
 (if (daemonp)
     (add-hook 'after-make-frame-functions 'my-init-theme))
 (my-init-theme nil)
+(setq inhibit-startup-screen t) ; スタートアップ画面なし
 
 (setq eol-mnemonic-dos "(CRLF)")
 (setq eol-mnemonic-unix "(LF)")
@@ -47,6 +49,9 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p) ; シェバンに +x
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; 空白消す
+(windmove-default-keybindings) ; windowの移動をSHIFT + arrow で
+(setq windmove-wrap-around t) ; 端からくるくる
+(which-function-mode 1)
 
 ;; バッファ切り替え強化
 (ido-mode t)
@@ -57,13 +62,13 @@
   )
 
 ;; ref: http://emacs.rubikitch.com/highlight-symbol/
-(use-package highlight-symbol
-  :init
-  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
-  (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode) ;; M-n M-p でシンボル移動
-  :config
-  (setq highlight-symbol-idle-delay 2.0)
-  )
+;;(use-package highlight-symbol
+;;  :init
+;;  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+;;  (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode) ;; M-n M-p でシンボル移動
+;;  :config
+;;  (setq highlight-symbol-idle-delay 2.0)
+;;  )
 
 ;;C-a C-e を拡張
 (use-package sequential-command-config

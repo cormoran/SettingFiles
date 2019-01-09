@@ -4,7 +4,7 @@ export EDITOR='emacs'
 export VISUAL='emacs'
 
 #
-# alias
+# simple alias
 #
 
 alias c='cd'
@@ -14,10 +14,24 @@ alias em='emacs'
 alias e='emacs'
 alias ct='column -t'
 
-# ls (BSD)
+#
+# mac : use coreutils
+#
+if [ "$(uname)" = 'Darwin' ]; then
+    if type gmv > /dev/null; then
+        alias mv='gmv'
+        alias ln='gln'
+    fi
+fi
+
+# ls
 LS='ls'
 if [ "$(uname)" = 'Darwin' ]; then
-    LS='/bin/ls -G'
+    if type /usr/local/bin/gls > /dev/null; then
+        LS='/usr/local/bin/gls --color=auto'
+    else
+        LS='/bin/ls -G'
+    fi
 elif [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
     if type /usr/bin/ls > /dev/null; then
         LS='/usr/bin/ls --color=auto'
@@ -43,9 +57,6 @@ alias rmtrash='trash'
 echo 'rm is disabled. use trash instead.'
 
 # open
-#if [ "$(uname)" = 'Darwin' ]; then
-#
-#fi
 if [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
     alias open=xdg-open
 fi
