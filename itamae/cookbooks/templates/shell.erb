@@ -60,3 +60,11 @@ echo 'rm is disabled. use trash instead.'
 if [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
     alias open=xdg-open
 fi
+
+
+#
+# load .shell_local.sh
+#
+if [ -e $HOME/.shell_local.sh ]; then
+   source $HOME/.shell_local.sh
+fi
