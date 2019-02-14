@@ -18,7 +18,7 @@ end
 
 execute "build & install emacs" do
   command "#{node[:prefix]}/install_script/install_emacs.sh"
-  not_if "test -e #{ENV['prefix']}/bin/emacsa"
+  not_if "test -e #{ENV['prefix']}/bin/emacs"
 end
 
 [node[:shell_rc_d], File.dirname(node[:cask_root])].each do |dir|
