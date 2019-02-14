@@ -12,6 +12,15 @@
 # bind -n WheelUpPane   select-pane -t= \; copy-mode -e \; send-keys -M
 # bind -n WheelDownPane select-pane -t= \;                 send-keys -M
 
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-online-status'
+
 set -g @online_icon " "
 set -g @offline_icon "#[bg=red] "
 
@@ -25,3 +34,6 @@ set -g status-right " #{battery_percentage} #{online_status}#(ip-local)#[d
 set-option -g status-bg colour235
 set-option -g status-fg colour4
 set-window-option -g window-status-current-fg colour3
+
+# プラグイン （Prefix I でインストールしてくれる）
+run '~/.tmux/plugins/tpm/tpm'

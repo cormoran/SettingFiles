@@ -9,6 +9,7 @@ node.reverse_merge!({
                     })
 node.reverse_merge!({
                       :tmux_conf_root => "#{node[:prefix]}/tmux",
+                      :shell_rc_d => "#{node[:prefix]}/shell_rc.d",
                       :tmux_version => "2.6",
                       :libevent_version => "2.1.8-stable"
                     })
