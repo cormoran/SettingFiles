@@ -17,8 +17,8 @@ remote_directory "#{node[:prefix]}/install_script" do
 end
 
 execute "build & install emacs" do
-  command "#{node[:prefix]}/install_script/install_emacs.sh"
-  not_if "test -e #{ENV['prefix']}/bin/emacs"
+  command "PREFIX=#{node[:prefix]} #{node[:prefix]}/install_script/install_emacs.sh"
+  not_if "test -e #{node[:prefix]}/bin/emacs"
 end
 
 [node[:shell_rc_d], File.dirname(node[:cask_root])].each do |dir|
