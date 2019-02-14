@@ -8,7 +8,7 @@
 
 (depends-on "smart-compile")
 (depends-on "autoinsert")
-; (depends-on "eldoc-extension")
+;(depends-on "eldoc-extension")
 (depends-on "fold-dwim")
 
 (depends-on "google-c-style")
@@ -30,10 +30,10 @@
 (depends-on "color-theme-solarized")
 
 (depends-on "undo-tree")
-; (depends-on "magit")
-; (depends-on "expand-region")
+(depends-on "magit")
+(depends-on "expand-region")
 
-; (depends-on "highlight-symbol")
-; (depends-on "ido-vertical-mode")
-; (depends-on "elpy")
-; (depends-on "py-yapf")
+(depends-on "highlight-symbol")
+(depends-on "ido-vertical-mode")
+(depends-on "elpy")
+(depends-on "py-yapf")
