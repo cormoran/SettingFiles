@@ -12,15 +12,6 @@
 #
 #
 
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-pain-control'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-
-set -g @plugin 'tmux-plugins/tmux-battery'
-set -g @plugin 'tmux-plugins/tmux-online-status'
-
 # prefixキーをC-qに変更
 set -g prefix C-q
 # C-bのキーバインドを解除
@@ -40,13 +31,8 @@ if-shell "uname | grep -q Linux" "source-file <%= @tmux_conf_root %>/tmux.conf.l
 if-shell "test -e ~/.tmux.conf.local" "source-file ~/.tmux.conf.local" ""
 
 # window-status を中央揃えで配置する
-# set -g status-justify "centre"
+set -g status-justify "centre"
 
 # $TERM=screen だと色が16色とかになるので
-# set-option -g default-terminal screen-256color
-# set -g terminal-overrides 'xterm:colors=256'
-
-
-
-# プラグイン （Prefix I でインストールしてくれる）
-run '~/.tmux/plugins/tpm/tpm'
+set-option -g default-terminal screen-256color
+set -g terminal-overrides 'xterm:colors=256'

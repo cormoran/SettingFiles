@@ -6,10 +6,19 @@ node.reverse_merge!({
                       :cask_root => "#{node[:prefix]}/emacs_cask",
                     })
 
-["emacs"].each do |p|
-  package p do
-    action :install
-  end
+# ["emacs"].each do |p|
+#   package p do
+#     action :install
+#   end
+# end
+
+remote_directory "#{node[:prefix]}/install_script" do
+  source "../../install_script"
+end
+
+execute "build & install emacs" do
+  command "PREFIX=#{node[:prefix]} #{node[:prefix]}/install_script/install_emacs.sh"
+  not_if "test -e #{node[:prefix]}/bin/emacs"
 end
 
 [node[:shell_rc_d], File.dirname(node[:cask_root])].each do |dir|
