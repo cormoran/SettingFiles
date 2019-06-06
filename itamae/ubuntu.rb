@@ -7,7 +7,7 @@ execute "apt update" do
     command "apt update"
 end
 
-["wget", "git", "unzip", "tar", "curl", "gcc" , "make", "libncurses5-dev", "libssl-dev", "libreadline-dev", "zlib1g-dev", "python"].each do |p|
+["wget", "git", "unzip", "tar", "curl", "gcc" , "make", "libncurses5-dev", "libssl-dev", "libreadline-dev", "zlib1g-dev", "python", "gnutls-dev", "zsh", "emacs", "pkg-config"].each do |p|
     package p do
       action :install
     end
