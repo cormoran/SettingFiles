@@ -17,6 +17,7 @@ include_recipe "cookbooks/jq.rb"
 include_recipe "cookbooks/ghq.rb"
 include_recipe "cookbooks/code.rb"
 include_recipe "cookbooks/emacs.rb"
+include_recipe "cookbooks/borg.rb"
 include_recipe "cookbooks/docker_machine.rb"
 
 include_recipe "cookbooks/cica_font.rb"
