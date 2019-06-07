@@ -38,8 +38,16 @@ template "#{node[:shell_rc_d]}/emacs_cask.sh" do
   variables(cask_root: node[:cask_root])
 end
 
-remote_directory "#{ENV['HOME']}/.emacs.d" do
-  source "files/emacs"
+["config", "elisp", "template"].each do |dir|
+  remote_directory "#{ENV['HOME']}/.emacs.d/#{dir}" do
+    source "files/emacs/#{dir}"
+  end
+end
+
+["Cask", "init.el", "simple.el"].each do |f|
+  remote_file "#{ENV['HOME']}/.emacs.d/#{f}" do
+    source "files/emacs/#{f}"
+  end
 end
 
 execute "install cask" do
