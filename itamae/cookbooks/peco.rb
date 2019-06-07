@@ -16,10 +16,17 @@ directory node[:work_dir] do
   action :create
 end
 
+case node[:platform]
+when 'osx', 'darwin'
+  os = 'darwin_amd64'
+when 'debian', 'ubuntu', 'redhat'
+  os = 'linux_amd64'
+end
+
 execute "download peco" do
   cwd node[:work_dir]
-  command "wget https://github.com/peco/peco/releases/download/#{node[:peco_version]}/peco_linux_386.tar.gz && tar zxf peco_linux_386.tar.gz"
-  not_if "test -e #{node[:work_dir]}/peco_linux_386.tar.gz"
+  command "wget https://github.com/peco/peco/releases/download/#{node[:peco_version]}/peco_#{os}.tar.gz && tar zxf peco_#{os}.tar.gz"
+  not_if "test -e #{node[:work_dir]}/peco_#{os}.tar.gz"
 end
 
 directory "#{node[:prefix]}/bin" do
@@ -28,7 +35,7 @@ end
 
 execute "install peco" do
   cwd node[:work_dir]
-  command "cp peco_linux_386/peco #{node[:prefix]}/bin/"
+  command "cp peco_#{os}/peco #{node[:prefix]}/bin/"
   not_if "test -e #{node[:prefix]}/bin/peco"
 end
 

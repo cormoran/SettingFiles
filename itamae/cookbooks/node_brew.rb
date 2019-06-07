@@ -1,3 +1,4 @@
+# coding: utf-8
 #
 # nodebrew を $nodebrew_root にインストールして、$shell_rc_d に、設定ファイルを追加
 # nodebrew に $node_versions をインストール
@@ -9,7 +10,7 @@ node.reverse_merge!({
 node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d",
                       :nodebrew_root => "#{node[:prefix]}/nodebrew",
-                      :node_versions => %w(v9.5.0)
+                      :node_versions => %w(v10.15)
                     })
 
 #

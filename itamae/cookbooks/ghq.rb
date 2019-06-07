@@ -11,10 +11,17 @@ directory node[:work_dir] do
   action :create
 end
 
+case node[:platform]
+when 'osx', 'darwin'
+  os = 'darwin_amd64'
+when 'debian', 'ubuntu', 'redhat'
+  os = 'linux_amd64'
+end
+
 execute "download ghq" do
   cwd node[:work_dir]
-  command "wget https://github.com/motemen/ghq/releases/download/#{node[:ghq_version]}/ghq_linux_386.zip && unzip -o ghq_linux_386.zip"
-  not_if "test -e #{node[:work_dir]}/ghq_linux_386.zip"
+  command "wget https://github.com/motemen/ghq/releases/download/#{node[:ghq_version]}/ghq_#{os}.zip && unzip -o ghq_#{os}.zip"
+  not_if "test -e #{node[:work_dir]}/ghq_#{os}.zip"
 end
 
 directory "#{node[:prefix]}/bin" do
