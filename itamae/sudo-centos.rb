@@ -3,5 +3,3 @@
       action :install
     end
 end
-
-include_recipe "local.rb"

@@ -41,4 +41,20 @@ visible-name='Solarized'
 use-theme-transparency=false
 EOF
 gsettings set org.gnome.Terminal.ProfilesList default b1dcc9dd-5262-4d8d-a863-c897e6d979b9
+
+
+
+sudo apt install -y chrome-gnome-shell
+# install User Themes https://extensions.gnome.org/extension/19/user-themes/
+snap install communitheme
+
+apt install borgbackup
+# in some directory
+borg init -e none home
+# copy script from https://borgbackup.readthedocs.io/en/stable/quickstart.html#automating-backups
+# run it once
+
+# set cron like
+0 1 * * * /mnt/data/Backup/backup-home.sh > /mnt/data/Backup/backup-home.1.log
+0 13 * * * /mnt/data/Backup/backup-home.sh > /mnt/data/Backup/backup-home.13.log
 ```
