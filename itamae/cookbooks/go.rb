@@ -36,7 +36,7 @@ end
 
 execute "install go" do
   cwd node[:work_dir]
-  command "cp -rf go#{node[:go_version]} #{node[:go_root]}"
+  command "cp -rfTb go#{node[:go_version]} #{node[:go_root]}"
   not_if "test -e #{node[:go_root]} && (go version | grep #{node[:go_version]})"
 end
 
