@@ -6,7 +6,7 @@ node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d",
                       :go_root => "#{node[:prefix]}/go",
                       :go_path => "#{ENV['HOME']}/Dropbox/Program",
-                      :go_version => "1.12.4"
+                      :go_version => "1.16.4"
                     })
 
 
@@ -36,7 +36,7 @@ end
 
 execute "install go" do
   cwd node[:work_dir]
-  command "cp -r go#{node[:go_version]} #{node[:go_root]}"
+  command "cp -rf go#{node[:go_version]} #{node[:go_root]}"
   not_if "test -e #{node[:go_root]} && (go version | grep #{node[:go_version]})"
 end
 
