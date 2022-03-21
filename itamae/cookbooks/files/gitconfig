@@ -9,9 +9,9 @@
 	s = status
 	st = status
 	c = checkout
-	ch = checkout
 	b = branch
-	br = branch
+    l = log --graph
+    ls = log --graph --oneline
 	graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 	g =     log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 	r = remote -v

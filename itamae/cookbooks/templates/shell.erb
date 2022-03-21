@@ -1,4 +1,4 @@
-# zsh, bash 共通の設定ファイル
+# common file for zsh & bash
 umask 022
 export EDITOR='emacs'
 export VISUAL='emacs'
@@ -27,11 +27,8 @@ fi
 # ls
 LS='ls'
 if [ "$(uname)" = 'Darwin' ]; then
-    if type /usr/local/bin/gls > /dev/null; then
-        LS='/usr/local/bin/gls --color=auto'
-    else
-        LS='/bin/ls -G'
-    fi
+    # use max's ls (not gls)
+    LS='ls -G'
 elif [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
     if type /usr/bin/ls > /dev/null; then
         LS='/usr/bin/ls --color=auto'
@@ -57,10 +54,12 @@ alias rmtrash='trash'
 echo 'rm is disabled. use trash instead.'
 
 # open
-if [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
+if [ "$(uname)" = 'Darwin' ]; then
+    # built in
+    # NOTE: expr becomes syntax error for mac
+elif [ "$(expr substr $(uname -s) 1 5)" = 'Linux' ]; then
     alias open=xdg-open
 fi
-
 
 #
 # load .shell_local.sh

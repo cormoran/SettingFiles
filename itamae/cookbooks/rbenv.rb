@@ -9,7 +9,7 @@ node.reverse_merge!({
 node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d",
                       :rbenv_root => "#{node[:prefix]}/rbenv",
-                      :ruby_versions => %w(2.5.0)
+                      :ruby_versions => %w(3.1.1)
                     })
 
 [node[:shell_rc_d], File.dirname(node[:rbenv_root])].each do |dir|
@@ -19,19 +19,28 @@ node.reverse_merge!({
   end
 end
 
-git "#{node[:rbenv_root]}" do
-  repository "https://github.com/rbenv/rbenv.git"
+case node[:platform]
+when 'osx', 'darwin'
+  package "rbenv" do
+    action :install
+  end
+when 'debian', 'ubuntu', 'redhat'
+  # build
+  git "#{node[:rbenv_root]}" do
+    repository "https://github.com/rbenv/rbenv.git"
+  end
+
+  git "#{node[:rbenv_root]}/plugins/ruby-build" do
+    repository "https://github.com/rbenv/ruby-build.git"
+  end
+
+  execute "build rbenv" do
+    cwd node[:rbenv_root]
+    command "src/configure && make -C src"
+    not_if "test -e #{node[:rbenv_root]}/libexec/rbenv-realpath.dylib"
+  end
 end
 
-git "#{node[:rbenv_root]}/plugins/ruby-build" do
-  repository "https://github.com/rbenv/ruby-build.git"
-end
-
-execute "build rbenv" do
-  cwd node[:rbenv_root]
-  command "src/configure && make -C src"
-  not_if "test -e #{node[:rbenv_root]}/libexec/rbenv-realpath.dylib"
-end
 
 template "#{node[:shell_rc_d]}/rbenv.sh" do
   action :create

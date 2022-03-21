@@ -54,3 +54,6 @@ execute "load ~/.zshrc from zprezto's zshrc" do
     command "echo 'source #{ENV['HOME']}/.zshrc' >> #{node[:zdotdir]}/.zshrc"
     not_if "grep 'source #{ENV['HOME']}/.zshrc' #{node[:zdotdir]}/.zshrc"
 end
+
+file "#{ENV['HOME']}/.zshrc" do
+end

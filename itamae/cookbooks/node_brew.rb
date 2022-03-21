@@ -10,7 +10,7 @@ node.reverse_merge!({
 node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d",
                       :nodebrew_root => "#{node[:prefix]}/nodebrew",
-                      :node_versions => %w(v10.15)
+                      :node_versions => %w(v17.7.2)
                     })
 
 #
@@ -32,9 +32,17 @@ end
 # download & install
 #
 
-execute "download nodebrew" do
-  command "curl -L git.io/nodebrew | NODEBREW_ROOT=#{node[:nodebrew_root]} perl - setup"
-  not_if "test -e #{node[:nodebrew_root]}"
+case node[:platform]
+when 'osx', 'darwin'
+  package "nodebrew" do
+    action :install
+  end
+when 'debian', 'ubuntu', 'redhat'
+  # build
+  execute "download nodebrew" do
+    command "curl -L git.io/nodebrew | NODEBREW_ROOT=#{node[:nodebrew_root]} perl - setup"
+    not_if "test -e #{node[:nodebrew_root]}"
+  end
 end
 
 template "#{node[:shell_rc_d]}/nodebrew.sh" do
@@ -52,8 +60,12 @@ nodebrew_init = <<-EOS
   export NODEBREW_ROOT=#{node[:nodebrew_root]}
 EOS
 
+execute "setup dirs" do
+    command "#{nodebrew_init} nodebrew setup_dirs"
+end
+
 node[:node_versions].each do |version|
-  execute "install node #{version}" do
+    execute "install node #{version}" do
     command "#{nodebrew_init} nodebrew install-binary #{version}"
     not_if "#{nodebrew_init} nodebrew ls | grep '#{version}'"
   end
