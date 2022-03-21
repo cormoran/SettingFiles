@@ -1,6 +1,6 @@
 # coding: utf-8
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2",
+                      :prefix => "#{ENV['HOME']}/local",
                       :work_dir => "#{ENV['HOME']}/tmp",
                       :borg_version => "1.1.10",
                       :borg_root => "#{ENV['HOME']}/Dropbox/Program/src"

@@ -1,5 +1,5 @@
 node.reverse_merge!({
-                      'prefix' => "#{ENV['HOME']}/local2",
+                      'prefix' => "#{ENV['HOME']}/local",
                       'work_dir' => "#{ENV['HOME']}/tmp",
                       'peco_version' => "v0.5.1"
                     })

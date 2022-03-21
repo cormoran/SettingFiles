@@ -1,6 +1,6 @@
 # https://docs.docker.com/machine/install-machine/
 node.reverse_merge!({
-    :prefix => "#{ENV['HOME']}/local2",
+    :prefix => "#{ENV['HOME']}/local",
     :version => "v0.16.0",
   })
 

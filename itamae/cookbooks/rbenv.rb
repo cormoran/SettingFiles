@@ -4,7 +4,7 @@
 #
 
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2"
+                      :prefix => "#{ENV['HOME']}/local"
                     })
 node.reverse_merge!({
                       :shell_rc_d => "#{node[:prefix]}/shell_rc.d",

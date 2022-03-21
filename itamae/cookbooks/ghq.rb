@@ -1,6 +1,6 @@
 # coding: utf-8
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2",
+                      :prefix => "#{ENV['HOME']}/local",
                       :work_dir => "#{ENV['HOME']}/tmp",
                       :ghq_version => "v0.8.0",
                       :ghq_root => "#{ENV['HOME']}/Dropbox/Program/src"

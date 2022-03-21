@@ -1,5 +1,5 @@
 node.reverse_merge!({
-                      'prefix' => "#{ENV['HOME']}/local2",
+                      'prefix' => "#{ENV['HOME']}/local",
                       'jq_version' => "1.5"
                     })
 

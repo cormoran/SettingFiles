@@ -1,5 +1,5 @@
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2",
+                      :prefix => "#{ENV['HOME']}/local",
                     })
 
 directory "#{node[:prefix]}/bin" do

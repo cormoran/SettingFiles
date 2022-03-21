@@ -16,7 +16,7 @@
 	(t (message "failed to load cask!"))))
 
 (message "System is %s." system-type)
-(init-cask (require 'cask "~/local2/emacs_cask/cask.el" t))
+(init-cask (require 'cask "~/local/emacs_cask/cask.el" t))
 
 ;; use-package が存在しない時のエラー対策
 ;; Ref: http://qiita.com/kai2nenobu/items/5dfae3767514584f5220

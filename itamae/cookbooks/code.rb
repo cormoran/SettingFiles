@@ -3,7 +3,7 @@
 #
 
 node.reverse_merge!({
-                      :prefix => "#{ENV['HOME']}/local2",
+                      :prefix => "#{ENV['HOME']}/local",
                       :vscode_path => "#{ENV['HOME']}/Dropbox/Apps/Linux/VSCode-linux-x64/bin/code"
                     })
 
