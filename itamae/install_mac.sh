@@ -12,3 +12,4 @@ fi
 ./mitamae-aarch64-darwin local cookbooks/rbenv.rb
 ./mitamae-aarch64-darwin local cookbooks/ghq.rb
 ./mitamae-aarch64-darwin local cookbooks/peco.rb
+./mitamae-aarch64-darwin local cookbooks/rust.rb

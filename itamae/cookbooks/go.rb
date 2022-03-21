@@ -26,6 +26,7 @@ when 'osx', 'darwin'
   package "go" do
     action :install
   end
+  goroot=""
 when 'debian', 'ubuntu', 'redhat'
   os = 'linux-amd64'
   execute "download go" do
@@ -38,10 +39,11 @@ when 'debian', 'ubuntu', 'redhat'
     command "cp -rfTb go#{node[:go_version]} #{node[:go_root]}"
     not_if "test -e #{node[:go_root]} && (go version | grep #{node[:go_version]})"
   end
+  goroot="#{node[:go_root]}"
 end
 
 template "#{node[:shell_rc_d]}/go.sh" do
   action :create
   source "templates/go.erb"
-  variables(go_root: node[:go_root], go_path: node[:go_path])
+  variables(go_root: goroot, go_path: node[:go_path])
 end
