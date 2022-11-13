@@ -1,3 +1,7 @@
+#SingleInstance, Force
+SendMode Input
+; SetWorkingDir, %A_ScriptDir%
+
 ; Apply emacs setting
 #Include emacs.ahk
 ; Import IME library

@@ -37,12 +37,12 @@ target_to_disable()
         Return 1
     IfWinActive,ahk_exe WindowsTerminal.exe ; WindowsTerminal
     {
+        IfWinActive,cmd - ssh
+            Return 1
+        IfWinActive,cmd
+            Return 0
         IfWinActive,Windows PowerShell
             Return 0
-        ;IfWinActive,OpenSSH SSH client ; ssh
-        ;  Return 1
-        ;IfWinActive,Ubuntu ; wsl ubuntu
-        ;  Return 1
         Return 1
     }
     IfWinActive,ahk_exe ApplicationFrameHost.exe
