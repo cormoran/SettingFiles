@@ -31,14 +31,8 @@ If (!(Test-Path $Profile.CurrentUserAllHosts) -Or !($(Get-Content $Profile.Curre
 }
 
 #
-# AutoHotKey startup
+# Install applications with winget
 #
-$StartupDirectory=$((Get-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" Startup).Startup)
-echo " * Applying AutoHotKey auto-start"
-if (!(Test-Path "$StartupDirectory\main.ahk")) {
-    echo "  * Creating symbolic link under $StartupDirectory"
-    New-Item -ItemType SymbolicLink -Path "$StartupDirectory\main.ahk" -Target "$PSScriptRoot\AutoHotKey\main.ahk"
-    echo "  [Done]"
-} Else {
-    echo "  [Skip]"
-}
+winget import .\winget\core.json
+winget import .\winget\languages.json
+winget import .\winget\development.json
