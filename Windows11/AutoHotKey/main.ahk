@@ -1,11 +1,9 @@
 #SingleInstance, Force
 SendMode Input
-; SetWorkingDir, %A_ScriptDir%
+SetWorkingDir, %A_ScriptDir%
 
-; Apply emacs setting
-#Include emacs.ahk
-; Import IME library
-#Include IME.ahk
+#Include %A_ScriptDir%\emacs.ahk
+#Include %A_ScriptDir%\IME.ahk
 
 ; Avoid focusing menu with alt
 *~LAlt::Send {Blind}{vk07}

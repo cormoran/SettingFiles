@@ -11,9 +11,12 @@ echo "* Running $PSCommandPath to apply cormoran's SettingFiles..."
 #
 $StartupDirectory=$((Get-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" Startup).Startup)
 echo " * Applying AutoHotKey auto-start"
-if (!(Test-Path "$StartupDirectory\main.ahk")) {
-    echo "  * Creating symbolic link under $StartupDirectory"
-    New-Item -ItemType SymbolicLink -Path "$StartupDirectory\main.ahk" -Target "$PSScriptRoot\AutoHotKey\main.ahk"
+if (!(Test-Path "$StartupDirectory\ahk.lnk")) {
+    echo "  * Creating shortcut under $StartupDirectory"
+    $WScriptShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WScriptShell.CreateShortcut("$StartupDirectory\ahk.lnk")
+    $Shortcut.TargetPath = "$PSScriptRoot\AutoHotKey\main.ahk"
+    $Shortcut.Save()
     echo "  [Done]"
 } Else {
     echo "  [Skip]"
