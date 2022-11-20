@@ -1,12 +1,5 @@
 # script to apply all settings in this directory
 
-
-# Run as admin
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Start-Process powershell.exe "-NoExit -NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
-    exit
-}
-
 echo "* Running $PSCommandPath to apply cormoran's SettingFiles..."
 # Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 

@@ -6,6 +6,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 echo "* Running $PSCommandPath to apply cormoran's SettingFiles..."
 
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 #
 # AutoHotKey startup
 #
