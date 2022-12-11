@@ -20,6 +20,7 @@ IME_SET(1)
 return
 
 ; For Japanse keyboard
+; Assuming left side of A is mapped to ctrl (by registory or keyboard layout)
 #if GetLayout(Language := "") = "jp"
     ; 無変換/変換 to space
     SC07B::Space
