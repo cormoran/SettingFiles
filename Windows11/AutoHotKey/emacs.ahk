@@ -21,7 +21,7 @@ target_to_disable()
     IfWinActive,ahk_class MEADOW ; Meadow
         Return 1
     IfWinActive,ahk_class cygwin/x X rl-xterm-XTerm-0
-    Return 1
+        Return 1
     IfWinActive,ahk_class MozillaUIWindowClass ; keysnail on Firefox
         Return 1
     ; Avoid VMwareUnity with AutoHotkey
@@ -67,7 +67,7 @@ is_command_prompt()
 {
     IfWinActive,ahk_exe WindowsTerminal.exe ; WindowsTerminal
         IfWinActive,cmd
-        Return 1
+            Return 1
     Return 0
 }
 
@@ -292,10 +292,15 @@ Return
         delete_char()
 Return
 ^h::
+    IfWinActive,ahk_exe Code.exe
+        delete_backward_char() ; workaround to support inputbox
+Else
+{
     If target_to_disable()
         Send %A_ThisHotkey%
     Else
         delete_backward_char()
+}
 Return
 ^k::
     If target_to_disable()
