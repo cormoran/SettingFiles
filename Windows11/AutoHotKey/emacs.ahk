@@ -35,6 +35,8 @@ target_to_disable()
         Return 1
     IfWinActive,ahk_exe idea64.exe ; Intellij
         Return 1
+    IfWinActive,ahk_exe vncviewer.exe
+        Return 1
     IfWinActive,ahk_exe WindowsTerminal.exe ; WindowsTerminal
     {
         IfWinActive,cmd - ssh
