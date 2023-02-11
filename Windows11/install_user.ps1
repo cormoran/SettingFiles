@@ -29,3 +29,4 @@ If (!(Test-Path $Profile.CurrentUserAllHosts) -Or !($(Get-Content $Profile.Curre
 winget import .\winget\core.json
 winget import .\winget\languages.json
 winget import .\winget\development.json
+winget import .\winget\extra.json
