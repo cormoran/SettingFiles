@@ -32,6 +32,8 @@ target_to_disable() {
             return false
         if WinActive("Windows PowerShell")
             return false
+        if WinActive("PowerShell")
+            return false
         return true
     }
     if WinActive("ahk_exe ApplicationFrameHost.exe")
