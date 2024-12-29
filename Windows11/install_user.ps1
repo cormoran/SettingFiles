@@ -24,9 +24,18 @@ If (!(Test-Path $Profile.CurrentUserAllHosts) -Or !($(Get-Content $Profile.Curre
 }
 
 #
+# Show extension file in explorer
+#
+Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -Value 0
+#Stop-Process -Name explorer -Force
+#Start-Process explorer
+
+
+
+#
 # Install applications with winget
 #
-winget import .\winget\core.json
-winget import .\winget\languages.json
-winget import .\winget\development.json
-winget import .\winget\extra.json
+#winget import .\winget\core.json
+#winget import .\winget\languages.json
+#winget import .\winget\development.json
+#winget import .\winget\extra.json

@@ -7,10 +7,13 @@
           "PackageIdentifier": "AgileBits.1Password"
         },
         {
-          "PackageIdentifier": "Lexikos.AutoHotkey"
+          "PackageIdentifier": "AutoHotkey.AutoHotkey"
         },
         {
           "PackageIdentifier": "Google.Chrome"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VisualStudioCode"
         }
       ],
       "SourceDetails": {

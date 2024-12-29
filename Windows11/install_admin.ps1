@@ -7,6 +7,19 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 echo "* Running $PSCommandPath to apply cormoran's SettingFiles..."
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
+#
+# Install Ctrl2Cap
+#
+# Check registry for Ctrl2Cap installation
+$registryKeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Ctrl2Cap"
+echo "* Installing Ctrl2Cap"
+if (Test-Path $registryKeyPath) {
+    Write-Output "[SKIP] Ctrl2Cap is installed (Registry entry found)."
+} else {
+    & $PSScriptRoot\bin\ctrl2cap.ps1
+}
+
 #
 # AutoHotKey startup
 #
